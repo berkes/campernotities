@@ -20,7 +20,20 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# Test group
+group :test do
+  gem "cucumber-rails"
+  gem "capybara"
 
+  gem "database_cleaner"
+  gem "rspec-rails", ">= 2.0.1"
+end
+
+group :development do 
+  gem "capybara"
+
+  gem "rspec-rails", ">= 2.0.1"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -37,11 +50,8 @@ end
 # To use debugger
 # gem 'debugger'
 
-gem "cucumber-rails", :group => [:development, :test]
-gem "capybara", :group => [:development, :test]
 gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
