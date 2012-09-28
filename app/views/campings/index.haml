@@ -1,0 +1,5 @@
+= link_to 'Add Camping', new_camping_url
+
+= pluralize(@count, 'camping')
+
+= render :partial => "camping", :collection => @campings
