@@ -50,8 +50,7 @@ end
 # To use debugger
 # gem 'debugger'
 
-gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
-gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+gem "activeadmin"
