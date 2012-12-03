@@ -7,17 +7,4 @@ class CampingsController < ApplicationController
   def show
     @camping = Camping.find(params[:id])
   end
-
-  def new
-    @camping = Camping.new
-  end
-  
-  def create
-    @camping = Camping.new(params[:camping])
-    if @camping.save
-      redirect_to(@camping)
-    else
-      render :action => "new"
-    end
-  end
 end

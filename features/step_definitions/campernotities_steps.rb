@@ -9,3 +9,10 @@ end
 Then /^the short description should be "(.*?)"$/ do |description|
   @camping.short_description.should == description
 end
+
+Then /^the "(.*?)" camping should appear on the campings listing$/ do |name|
+  visit campings_path
+  page.should have_content("1 camping")
+  page.should have_content(name)
+end
+
