@@ -2,8 +2,16 @@ Given /^I am not logged in$/ do
   visit destroy_admin_user_session_path
 end
 
+Given /^there is a user "(.*?)" with password "(.*?)"$/ do |username, password|
+  @user = AdminUser.new(:email => username, :password => password, :password_confirmation => password)
+  @user.save!
+end
+
 When /^I log in with username "(.*?)" and password "(.*?)"$/ do |username, password|
-  pending
+  visit new_admin_user_session_path
+  fill_in "Email", :with => username
+  fill_in "Password", :with => password
+  click_button "Login"
 end
 
 When /^I create a new user with role "(.*?)"$/ do |role|

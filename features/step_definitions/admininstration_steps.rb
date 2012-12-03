@@ -3,5 +3,5 @@ When /^I vist the administration dashboard$/ do
 end
 
 Then /^I should see a dashboard$/ do
-  pending # express the regexp above with the code you wish you had
+  page.should have_content("Dashboard")
 end
