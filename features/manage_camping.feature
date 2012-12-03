@@ -7,15 +7,14 @@ Feature: Manage campings
   Scenario: Logged in writer sees own campings dashboard
     Given I am administrator
     And I have a camping "Beautifull Green"
-    When I vist the administration dashboard
+    When I visit the administration dashboard
     Then I should see a panel titled "My Campings"
     Then I should see camping "Beautifull Green"
 
-  @wip
-  Scenario: Logged in writer updates a camping
+  Scenario: Logged in writer can update campings
     Given I am administrator
-    And a writer has a camping
-    When the writer clicks update
-    And updates the camping title to "updated!"
-    Then the "updated!" camping should appear on the campings listing
-
+    And I have a camping "Beautifull Green"
+    When I visit the update page for "Beautifull Green"
+    And I update the name to "updated!"
+    And I visit the "Campings" administration page
+    Then I should see a camping "updated!"

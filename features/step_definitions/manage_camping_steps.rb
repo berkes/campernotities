@@ -14,13 +14,16 @@ When /^I create a Camping named "(.*?)"$/ do |name|
   click_button "Create Camping"
 end
 
-When /^the writer clicks update$/ do
-  visit my_campings_path
-  click_link "Update"
+When /^I visit the update page for "(.*?)"$/ do |name|
+  @camping = Camping.where(:name => name).first
+  visit edit_admin_camping_path @camping
 end
 
-When /^updates the camping title to "(.*?)"$/ do |arg1|
-  fill_in "Name", :with => name
-  click_button "Update"
+When /^I update the name to "(.*?)"$/ do |name|
+  fill_in :name, :with => name
+  click_button :update
 end
 
+Then /^I should see a camping "(.*?)"$/ do |name|
+  page.should have_content name
+end
