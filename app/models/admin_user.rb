@@ -9,5 +9,5 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  has_many :campings
+  has_many :campings, :foreign_key => :author_id
 end
