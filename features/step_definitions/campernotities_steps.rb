@@ -16,3 +16,6 @@ Then /^the "(.*?)" camping should appear on the campings listing$/ do |name|
   page.should have_content(name)
 end
 
+Then /^I should see camping "(.*?)"$/ do |title|
+  page.should have_content(title)
+end

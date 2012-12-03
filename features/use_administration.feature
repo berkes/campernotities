@@ -6,7 +6,7 @@ Feature: Use administration area
 
   Scenario: Get a login form
     Given I am not logged in
-    When I vist the administration dashboard
+    When I visit the administration dashboard
     Then I should see a login-form
 
   Scenario: Access the Dashboard
