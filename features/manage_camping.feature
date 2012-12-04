@@ -18,3 +18,9 @@ Feature: Manage campings
     And I update the name to "updated!"
     And I visit the "Campings" administration page
     Then I should see a camping "updated!"
+
+  Scenario: Logged in writer can update camping from dashboard
+    Given I am administrator
+    And I have a camping "Beautifull Green"
+    When I visit the administration dashboard
+    Then I should see the "edit"-link for "Beautifull Green"

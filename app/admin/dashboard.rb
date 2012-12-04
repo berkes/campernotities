@@ -12,6 +12,9 @@ ActiveAdmin.register_page "Dashboard" do
                 td do
                   camping.name
                 end
+                td do
+                  link_to "edit", edit_admin_camping_path(camping)
+                end
               end
             end #each
           end #table
