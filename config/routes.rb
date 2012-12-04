@@ -3,7 +3,9 @@ Campernotities::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  match "campings" => "campings#index"
+  match "/campings"     => "campings#index"
+  match "/campings/:id" => "campings#show", :as => :camping
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

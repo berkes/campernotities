@@ -1,3 +1,7 @@
 %article
   %h1
     = camping.name
+  .description
+    = camping.short_description
+  .more
+    = link_to "read more", camping_path(camping)
