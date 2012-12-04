@@ -23,7 +23,3 @@ When /^I update the name to "(.*?)"$/ do |name|
   fill_in :name, :with => name
   click_button :update
 end
-
-Then /^I should see a camping "(.*?)"$/ do |name|
-  page.should have_content name
-end
