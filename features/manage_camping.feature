@@ -4,6 +4,13 @@ Feature: Manage campings
   As a logged in writer
   I want to update and delete campings
 
+  Scenario: Create camping
+    Given I am administrator
+    And no campings on the campings listing
+    When I create a Camping named "Beautifull Green"
+    And I visit the "Campings" administration page
+    Then I should see a camping "Beautifull Green"
+
   Scenario: Logged in writer sees own campings dashboard
     Given I am administrator
     And I have a camping "Beautifull Green"
