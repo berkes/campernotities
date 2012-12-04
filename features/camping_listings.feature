@@ -11,15 +11,15 @@ Feature: Camping Listings
 
   Scenario: Description under 14 characters.
     Given there is a camping with name "Beautifull Green"
-    When I set the description to "Beautifull green."
-    And I visit the camping listing
-    Then the short description should be "Beautifull green."
+    And with a description "Beautifull green."
+    When I visit the camping listing
+    Then I should see the description "Beautifull green."
 
   Scenario: Long description, over 140 characters.
     Given there is a camping with name "Beautifull Green"
-    When I set the description to "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green."
-    And I visit the camping listing
-    Then the short description should be "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beau"
+    And with a description "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green."
+    When I visit the camping listing
+    Then I should see the description "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beau"
 
   Scenario: Follow link to camping page
     Given there is a camping with name "Beautifull Green"

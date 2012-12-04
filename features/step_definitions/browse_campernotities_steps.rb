@@ -19,10 +19,6 @@ Then /^I should see a camping "(.*?)"$/ do |name|
   page.should have_content name
 end
 
-Then /^the short description should be "(.*?)"$/ do |description|
-  page.find(".description").should have_content(description)
-end
-
 Then /^I should see camping "(.*?)"$/ do |title|
   page.should have_content(title)
 end
