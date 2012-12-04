@@ -1,4 +1,4 @@
-Given /^a Camping in a list$/ do
+Given /^there is a camping$/ do
   @camping = Camping.new
 end
 

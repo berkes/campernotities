@@ -5,11 +5,11 @@ Feature: Camping Listings
   I want to see names and short descriptions
 
   Scenario: Description under 14 characters.
-    Given a Camping in a list
+    Given there is a camping
     When I set the description to "Beautifull green."
     Then the short description should be "Beautifull green."
 
   Scenario: Long description, over 140 characters.
-    Given a Camping in a list
+    Given there is a camping
     When I set the description to "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green."
     Then the short description should be "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beau"
