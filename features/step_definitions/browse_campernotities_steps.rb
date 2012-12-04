@@ -3,7 +3,7 @@ Given /^there is a camping with name "(.*?)"$/ do |name|
   @camping.save
 end
 
-When /^I set the description to "(.*?)"$/ do |description|
+Given /^with a description "(.*?)"$/ do |description|
   @camping.update_attribute(:description, description)
 end
 
@@ -25,4 +25,8 @@ end
 
 Then /^I should see camping "(.*?)"$/ do |title|
   page.should have_content(title)
+end
+
+Then /^I should see the description "(.*?)"$/ do |description|
+  page.find(".description").should have_content(description)
 end

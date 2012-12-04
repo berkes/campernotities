@@ -23,6 +23,8 @@ Feature: Camping Listings
 
   Scenario: Follow link to camping page
     Given there is a camping with name "Beautifull Green"
+    And with a description "Beautifull Green Site"
     When I visit the camping listing
     And I follow the "read more" link
     Then I should see a camping "Beautifull Green"
+    And I should see the description "Beautifull Green Site"
