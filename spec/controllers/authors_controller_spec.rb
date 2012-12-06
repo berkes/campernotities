@@ -12,6 +12,8 @@ describe AuthorsController do
     it 'loads the user' do
       AdminUser.should_receive(:find).with author.id.to_s
       get :show, :id => author.id
+
+      expect(assigns(:author)).to eq author
     end
 
     it 'loads the campings for this user' do
