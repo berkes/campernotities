@@ -1,8 +1,9 @@
 Given /^there is a camping with name "(.*?)"$/ do |name|
-  author = AdminUser.new(:email => "admin@example.com", :password => "password", :password_confirmation => "password")
+  author = AdminUser.new(:name => "Harry", :email => "admin@example.com", :password => "password", :password_confirmation => "password")
+  author.save!
   @camping = Camping.new(:name => name)
   @camping.author = author
-  @camping.save
+  @camping.save!
 end
 
 Given /^with a description "(.*?)"$/ do |description|

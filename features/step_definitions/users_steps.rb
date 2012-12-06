@@ -3,7 +3,7 @@ Given /^I am not logged in$/ do
 end
 
 Given /^there is a user "(.*?)" with password "(.*?)"$/ do |username, password|
-  @user = AdminUser.new(:email => username, :password => password, :password_confirmation => password)
+  @user = AdminUser.new(:name => username, :email => username, :password => password, :password_confirmation => password)
   @user.save!
 end
 
