@@ -1,6 +1,6 @@
 Feature: Manage campings
 
-  So that a writer can mamage her campings
+  So that a writer can manage her campings
   As a logged in writer
   I want to update and delete campings
 
