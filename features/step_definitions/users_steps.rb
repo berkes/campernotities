@@ -14,7 +14,7 @@ When /^I log in with username "(.*?)" and password "(.*?)"$/ do |username, passw
   click_button "Login"
 end
 
-Given /^I am administrator$/ do
+Given /^I have logged in as an Administrator$/ do
   step "there is a user \"admin@example.com\" with password \"password\""
   step "I log in with username \"admin@example.com\" and password \"password\""
 end
