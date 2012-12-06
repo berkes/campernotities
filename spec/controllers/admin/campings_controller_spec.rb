@@ -5,7 +5,7 @@ describe Admin::CampingsController do
 
   context "#create" do
     it 'should associate current user as author' do
-      @user = AdminUser.new(:email => "admin@example.com", :password =>"password", :password_confirmation => "password")
+      @user = AdminUser.new(:name => "Harry", :email => "admin@example.com", :password =>"password", :password_confirmation => "password")
       @user.save
       sign_in @user
 
