@@ -31,3 +31,11 @@ Feature: Manage campings
     And I have a camping "Beautifull Green"
     When I visit the administration dashboard
     Then I should see the "edit"-link for "Beautifull Green"
+
+  Scenario: Administrator can delete campings
+    Given I am administrator
+    And I have a camping "Beautifull Green"
+    When I visit the "Campings" administration page
+    Then I should see the "delete"-link for "Beautifull Green"
+
+
