@@ -4,6 +4,11 @@ Feature: Camping Listings
   As a camping-visitor
   I want to see names and short descriptions
 
+  Scenario: Visit homepage
+    Given there is a camping with name "Beautifull Green"
+    When I visit the homepage
+    Then I should see a camping "Beautifull Green"
+
   Scenario: Campings appear on listing
     Given there is a camping with name "Beautifull Green"
     When I visit the camping listing

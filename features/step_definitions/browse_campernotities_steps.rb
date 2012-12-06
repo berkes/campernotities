@@ -10,6 +10,10 @@ Given /^with a description "(.*?)"$/ do |description|
   @camping.update_attribute(:description, description)
 end
 
+When /^I visit the homepage$/ do
+  visit root_url
+end
+
 When /^I visit the camping listing$/ do
   visit campings_path
 end
