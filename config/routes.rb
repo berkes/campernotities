@@ -1,7 +1,10 @@
 Campernotities::Application.routes.draw do
-  devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :campings
+  ActiveAdmin.routes(self)
+
+  match "/campings"     => "campings#index"
+  match "/campings/:id" => "campings#show", :as => :camping
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
