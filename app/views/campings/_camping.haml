@@ -1,6 +1,8 @@
 %article
   %h1
     = camping.name
+  .author
+    = link_to author_path(camping.author)
   .description
     = camping.short_description
   .more

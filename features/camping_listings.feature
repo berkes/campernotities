@@ -28,3 +28,9 @@ Feature: Camping Listings
     And I follow the "read more" link
     Then I should see a camping "Beautifull Green"
     And I should see the description "Beautifull Green Site"
+
+  @wip
+  Scenario: View campings for "Harry"
+    Given there is a camping with name "Beautifull Green" by "Harry"
+    When I visit the camping listing
+    Then I should see a link to "By Harry"
