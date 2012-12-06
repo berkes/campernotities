@@ -6,6 +6,8 @@ Campernotities::Application.routes.draw do
   match "/campings"     => "campings#index"
   match "/campings/:id" => "campings#show", :as => :camping
 
+  match "/authors/:id" => "authors#show", :as => :author
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
