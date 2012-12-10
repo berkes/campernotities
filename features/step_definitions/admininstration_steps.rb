@@ -25,3 +25,9 @@ Then /^I should see the "(.*?)"-link for "(.*?)"$/ do |action, name|
   page.should have_xpath("//a[@href='#{action_path}']")
 end
 
+Then /^I should see the image on the admin view page$/ do
+  camping = Camping.find(:first)
+  visit admin_camping_path(camping)
+
+  page.should have_xpath("//img[@src='#{camping.image.url}']")
+end

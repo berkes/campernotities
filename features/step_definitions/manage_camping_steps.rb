@@ -27,7 +27,11 @@ When /^I visit the update page for "(.*?)"$/ do |name|
   visit edit_admin_camping_path @camping
 end
 
+When /^I click update$/ do
+  click_button :update
+end
+
 When /^I update the name to "(.*?)"$/ do |name|
   fill_in :name, :with => name
-  click_button :update
+  step "I click update"
 end
