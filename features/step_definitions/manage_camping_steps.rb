@@ -1,5 +1,5 @@
 Given /^I have a camping "(.*?)"$/ do |title|
-  step "I create a Camping named \"#{title}\""
+  step %{I create a camping "#{title}"}
 end
 
 Given /^no campings on the campings listing$/ do
@@ -12,14 +12,25 @@ Given /^a 'create new camping' form$/ do
   click_link "New Camping"
 end
 
-When /^I create a Camping named "(.*?)"$/ do |name|
-  step "a 'create new camping' form"
-  fill_in "Name", :with => name
-  click_button "Create Camping"
+When /^I create a camping "(.*?)"$/ do |name|
+  step %{a 'create new camping' form}
+  step %{I give it the name "#{name}"}
+  step %{I click "Create Camping"}
 end
 
-When /^I attach an image/ do
-  page.attach_file("Image", File.join("spec", "fixtures", "green_small.jpg"))
+When /^I create a camping with the image "(.*?)"$/ do |image|
+  step %{a 'create new camping' form}
+  step %{I give it the name "Beautifull Green"}
+  step %{I attach the image "#{image}"}
+  step %{I click "Create Camping"}
+end
+
+When /^I give it the name "(.*?)"$/ do |name|
+  fill_in "Name", :with => name
+end
+
+When /^I attach the image "(.*?)"$/ do |image|
+  page.attach_file("Image", File.join("spec", "fixtures", image))
 end
 
 When /^I visit the update page for "(.*?)"$/ do |name|
@@ -27,11 +38,11 @@ When /^I visit the update page for "(.*?)"$/ do |name|
   visit edit_admin_camping_path @camping
 end
 
-When /^I click update$/ do
-  click_button :update
+When /^I click "(.*)"$/ do |name|
+  click_button name
 end
 
 When /^I update the name to "(.*?)"$/ do |name|
   fill_in :name, :with => name
-  step "I click update"
+  step %{I click "Update Camping"}
 end

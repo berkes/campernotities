@@ -9,7 +9,7 @@ Feature: Manage campings
 
   Scenario: create a new camping
     Given no campings on the campings listing
-    When I create a Camping named "Beautifull Green"
+    When I create a camping "Beautifull Green"
     And I visit the "Campings" administration page
     Then I should see a camping "Beautifull Green"
 
