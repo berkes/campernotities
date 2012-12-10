@@ -4,6 +4,7 @@ ActiveAdmin.register Camping do
     f.inputs "Camping" do
       f.input :name
       f.input :image
+      f.input :delete_image
       f.input :description
     end
 
@@ -29,5 +30,11 @@ ActiveAdmin.register Camping do
       row :updated_at
     end
     active_admin_comments
+  end
+
+  member_action :destroy_image, :method => :delete do
+    camping = Camping.find(params[:id])
+    camping.image.destroy
+    redirect_to({:action => :show}, :notice => "Image deleted")
   end
 end
