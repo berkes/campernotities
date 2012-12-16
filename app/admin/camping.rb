@@ -1,15 +1,5 @@
 ActiveAdmin.register Camping do
-
-  form do |f|
-    f.inputs "Camping" do
-      f.input :name
-      f.input :image
-      f.input :delete_image
-      f.input :description
-    end
-
-    f.actions
-  end
+  form :partial => "form"
 
   controller do
     def create

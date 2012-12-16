@@ -1,0 +1,8 @@
+<%= semantic_form_for [:admin, @camping] do |f| %>
+  <%= f.inputs "Camping" do %>
+    <%= f.input :name %>
+    <%= f.input :image %>
+    <%= f.input :description %>
+  <% end -%>
+  <%= f.actions %>
+<% end -%>

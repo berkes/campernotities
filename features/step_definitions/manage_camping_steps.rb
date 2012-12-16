@@ -46,3 +46,7 @@ When /^I update the name to "(.*?)"$/ do |name|
   fill_in :name, :with => name
   step %{I click "Update Camping"}
 end
+
+When /^I delete the image$/ do
+  click_link "Delete image"
+end
