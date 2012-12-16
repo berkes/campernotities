@@ -14,7 +14,7 @@ ActiveAdmin.register Camping do
       row :name
       row :description
       row :image do
-        image_tag(camping.image.url)
+        image_tag(camping.image.url) if camping.image_file_name
       end
       row :created_at
       row :updated_at
@@ -24,7 +24,8 @@ ActiveAdmin.register Camping do
 
   member_action :destroy_image, :method => :delete do
     camping = Camping.find(params[:id])
-    camping.image.destroy
+    camping.image = nil
+    camping.save!
     redirect_to({:action => :show}, :notice => "Image deleted")
   end
 end

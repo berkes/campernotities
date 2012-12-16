@@ -1,7 +1,16 @@
 <%= semantic_form_for [:admin, @camping] do |f| %>
   <%= f.inputs "Camping" do %>
     <%= f.input :name %>
-    <%= f.input :image %>
+
+    <% if f.object.new_record? %>
+      <%= f.input :image %>
+    <% else %>
+      <li class="file input required" id="profile_image_input">
+        <label class="label" for="profile_image">Image</label>
+        <%= f.file_field :image %>
+        or
+        <%= link_to "Delete image", destroy_image_admin_camping_path, :method => :delete, :confirm => "Are you sure?" %>
+    <% end -%>
     <%= f.input :description %>
   <% end -%>
   <%= f.actions %>

@@ -25,8 +25,9 @@ describe Admin::CampingsController do
       @camping.stub(:image).and_return(@image)
       Camping.stub(:find).and_return(@camping)
 
-      @image.should_receive(:destroy)
       Camping.should_receive(:find).with(@camping.id.to_s)
+      @camping.should_receive(:image=).with(nil)
+      @camping.should_receive(:save!)
 
       delete :destroy_image, :id => @camping.id
       response.should redirect_to :action => :show

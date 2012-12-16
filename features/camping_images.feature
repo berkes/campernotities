@@ -20,9 +20,8 @@ Feature: Camping Images
     And I click "Update Camping"
     Then I should see the image "brown_small.jpg" on the admin view page
 
-  @wip
   Scenario: Delete the image of a Camping
     Given I visit the update page for "Beautifull Green"
     When I delete the image
-    And I click "Update Camping"
-    Then I should not see the image on the admin view page.
+    And I visit the attributes page for "Beautifull Green"
+    Then I should not see the image in attributes

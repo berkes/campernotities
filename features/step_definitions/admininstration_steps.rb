@@ -7,6 +7,11 @@ When /^I visit the "(.*?)" administration page$/ do |menu|
   click_link menu
 end
 
+When /^I visit the attributes page for "(.*?)"$/ do |name|
+  camping = Camping.where(:name => name).first
+  visit admin_camping_path(camping)
+end
+
 Then /^I should see a dashboard$/ do
   page.should have_content("Dashboard")
 end
@@ -31,4 +36,8 @@ Then /^I should see the image "(.*?)" on the admin view page$/ do |image|
 
   camping.image.url.should match /#{image}/
   page.should have_xpath("//img[@src='#{camping.image.url}']")
+end
+
+Then /^I should not see the image in attributes$/ do
+  page.should_not have_xpath('//*[@class="attributes_table camping"]//img')
 end
