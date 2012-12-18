@@ -30,7 +30,7 @@ When /^I give it the name "(.*?)"$/ do |name|
 end
 
 When /^I attach the image "(.*?)"$/ do |image|
-  page.attach_file("Image", File.join("spec", "fixtures", image))
+  page.attach_file("camping_image", File.join("spec", "fixtures", image))
 end
 
 When /^I visit the update page for "(.*?)"$/ do |name|
