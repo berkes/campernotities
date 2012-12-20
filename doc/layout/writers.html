@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Welcome to Foundation</title>
+
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="foundation/stylesheets/foundation.css">
+  -->
+
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="foundation/stylesheets/app.css">
+
+  <script src="foundation/javascripts/modernizr.foundation.js"></script>
+  <script src="foundation/javascripts/foundation.min.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <style type="text/css" media="screen">
+    #content section {
+      position:relative;
+    }
+    #content li.more, 
+    #content li.more a {
+      display:block;
+      position:absolute;
+      top:0;
+      right:0;
+      height: 200px;
+      width: 40px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body class="front">
+  <nav class="top-bar">
+    <!--Title area-->
+    <ul>
+      <li class="name">
+        <h1>
+          <a href="/">Camper</a>
+        </h1>
+      </li>
+      <li class="toggle-topbar"><a href="#"></a></li>
+    </ul>
+
+    <section>
+      <ul class="left">
+        <li class="divider"></li>
+        <li><a href="">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="">Writers</a></li>
+        <li class="divider"></li>
+        <li><a href="">Find</a></li>
+        <li class="divider"></li>
+      </ul>
+
+      <ul class="right">
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Login</a>
+          <ul class="dropdown">
+            <li class="search has-button">
+              <input type="text" name="name" value="" id="name" placeholder="Username">
+              <input type="password" name="password" value="" id="name" placeholder="Password">
+              <input type="button" name="submit" value="Login" id="submit">
+            </li>
+            <li><a href="#">Password reminder</a></li>
+            <li><a href="#">Apply for account</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+  <div class="row" id="content">
+    <section>
+    <h2><a href="#">Bèr en Anna</a></h2>
+    <ul class="block-grid four-up mobile">
+      <li><a href="#" ><img src="http://flickholdr.com/300/200/nature/4" /></a></li>
+      <li><a href="#" ><img src="http://flickholdr.com/300/200/nature/1" /></a></li>
+      <li><a href="#" ><img src="http://flickholdr.com/300/200/nature/2" /></a></li>
+      <li><a href="#" ><img src="http://flickholdr.com/300/200/nature/3" /></a></li>
+      <li class="more"><a href="#">more</a></li>
+    </ul>
+    </section>
+  </div>
+
+  <footer>
+    <div class="row">
+      <div class="four columns">
+        Get in <a href="">Contact</a>.
+      </div>
+      <div class="four columns">
+        Built by <a href="http://berk.es">Bèr `berkes` Kessels</a>.
+      </div>
+      <div class="four columns"> More <a href="about">about this site</a>.</div>
+    </div>
+  </footer>
+</body>
+</html>
