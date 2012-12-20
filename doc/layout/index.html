@@ -23,14 +23,57 @@
   <link rel="stylesheet" href="foundation/stylesheets/app.css">
 
   <script src="foundation/javascripts/modernizr.foundation.js"></script>
+  <script src="foundation/javascripts/foundation.min.js"></script>
 
   <!-- IE Fix for HTML5 Tags -->
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <style type="text/css" media="screen">
+    .stretcher {
+      position:absolute;
+      top:45px;
+      left:0;
+      width:100%;
+      height:720px;
+      z-index: -1;
+      background: transparent url("campsite.jpg") top center no-repeat;
+      background-size: 100% 720px;
+    }
 
+    #fp-selector {
+      margin-top: 160px;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      var imgArr = new Array( // relative paths of images
+       'campsite.jpg',
+       'campsite_2.jpg',
+       'campsite_3.jpg',
+       'campsite_4.jpg'
+       );
+
+      /* preload images */
+      var preloadArr = new Array();
+      var i;
+      for(i=0; i < imgArr.length; i++) {
+       preloadArr[i] = new Image();
+       preloadArr[i].src = imgArr[i];
+      }
+
+      var currImg = 1;
+      var intID = setInterval(changeImg, 6000);
+      /* image rotator */
+      function changeImg(){
+        $('.stretcher').animate({opacity: 0.8}, 600, function(){
+          $(this).css('background-image', 'url('+preloadArr[currImg++%preloadArr.length].src+')');
+        }).animate({opacity: 1}, 1000);
+      }
+     });
+  </script>
 </head>
-<body>
+<body class="front">
   <nav class="top-bar">
     <!--Title area-->
     <ul>
@@ -70,29 +113,34 @@
       </ul>
     </section>
   </nav>
-
-  <div class="row">
-     <div class="eight columns centered">
-        <form action="#" method="post" accept-charset="utf-8">
-          <div class="row">
-            <div class="six columns">
-              <label for="author">
-                Show me the campings by
-              </label>
-            </div>
-            <div class="two columns">
-              <select name="author" id="author">
-                <option value="option1">Bèr &amp; Anna</option>
-                <option value="option2">Foo and Bar</option>
-              </select>
-            </div>
-          </div> 
-        </form>
+  <div class="stretcher">
+    
+  </div>
+  <div class="row" id="content">
+     <div id="fp-selector" class="four columns centered">
+        <div href="#" class="large button dropdown">
+          Show me campings by
+          <ul>
+            <li><a href="#">Anna en Bèr</a></li>
+            <li><a href="#">FooBar</a></li>
+            <li><a href="#">Bar en Boos</a></li>
+            <li class="divider"></li>
+            <li><a href="#">More authors...</a></li>
+          </ul>
+        </div>
      </div>
   </div>
 
-
-  
+  <footer>
+    <div class="row">
+      <div class="four columns">
+        Get in <a href="">Contact</a>.
+      </div>
+      <div class="four columns">
+        Built by <a href="http://berk.es">Bèr `berkes` Kessels</a>.
+      </div>
+      <div class="four columns"> More <a href="about">about this site</a>.</div>
+    </div>
+  </footer>
 </body>
 </html>
-
