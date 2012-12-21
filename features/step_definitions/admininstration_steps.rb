@@ -30,14 +30,10 @@ Then /^I should see the "(.*?)"-link for "(.*?)"$/ do |action, name|
   page.should have_xpath("//a[@href='#{action_path}']")
 end
 
-Then /^I should see the image "(.*?)" on the admin view page$/ do |image|
-  camping = Camping.find(:first)
-  visit admin_camping_path(camping)
-
-  camping.image.url.should match /#{image}/
-  page.should have_xpath("//img[@src='#{camping.image.url}']")
+Then /^I should see the image "(.*?)" on the attributes page$/ do |image|
+  page.should have_xpath("//img[contains(@src, '#{image}')]")
 end
 
-Then /^I should not see the image in attributes$/ do
+Then /^I should not see the image in attributes on the attributes page$/ do
   page.should_not have_xpath('//*[@class="attributes_table camping"]//img')
 end

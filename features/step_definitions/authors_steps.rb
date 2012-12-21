@@ -1,9 +1,5 @@
 Given /^there is an author "(.*?)"$/ do |name|
-  AdminUser.new(
-    :name  => name,
-    :email => "harry.potter@hogwards.edu.uk",
-    :password => "password", :password_confirmation => "password"
-  ).save!
+  user(:name => name)
 end
 
 When /^I visit the profile for "(.*?)"$/ do |name|

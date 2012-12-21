@@ -2,7 +2,7 @@ Feature: Authors
 
   In order to personalize the site
   As a visitor
-  I want to see profiles for the authors
+  I want to see a profile for each autor
 
   Scenario: Author profile has a name
     Given there is an author "Harry"

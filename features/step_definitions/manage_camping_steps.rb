@@ -1,6 +1,4 @@
-Given /^I have a camping "(.*?)"$/ do |title|
-  step %{I create a camping "#{title}"}
-end
+include FeatureHelper
 
 Given /^no campings on the campings listing$/ do
   Camping.find(:all).each {|c| c.destroy}
@@ -12,17 +10,12 @@ Given /^a 'create new camping' form$/ do
   click_link "New Camping"
 end
 
-When /^I create a camping "(.*?)"$/ do |name|
-  step %{a 'create new camping' form}
-  step %{I give it the name "#{name}"}
-  step %{I click "Create Camping"}
+When /^I (?:create|have) a camping "(.*?)"$/ do |name|
+  camping(:name => name)
 end
 
 When /^I create a camping with the image "(.*?)"$/ do |image|
-  step %{a 'create new camping' form}
-  step %{I give it the name "Beautifull Green"}
-  step %{I attach the image "#{image}"}
-  step %{I click "Create Camping"}
+  camping(:image => File.open(File.join("spec", "fixtures", image)))
 end
 
 When /^I give it the name "(.*?)"$/ do |name|
