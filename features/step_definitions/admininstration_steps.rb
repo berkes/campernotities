@@ -7,11 +7,6 @@ When /^I visit the "(.*?)" administration page$/ do |menu|
   click_link menu
 end
 
-When /^I visit the attributes page for "(.*?)"$/ do |name|
-  camping = Camping.where(:name => name).first
-  visit admin_camping_path(camping)
-end
-
 Then /^I should see a dashboard$/ do
   page.should have_content("Dashboard")
 end

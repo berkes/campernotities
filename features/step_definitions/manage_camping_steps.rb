@@ -18,10 +18,6 @@ When /^I create a camping with the image "(.*?)"$/ do |image|
   camping(:image => File.open(File.join("spec", "fixtures", image)))
 end
 
-When /^I give it the name "(.*?)"$/ do |name|
-  fill_in "Name", :with => name
-end
-
 When /^I attach the image "(.*?)"$/ do |image|
   page.attach_file("camping_image", File.join("spec", "fixtures", image))
 end
