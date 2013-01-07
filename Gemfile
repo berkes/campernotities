@@ -28,6 +28,8 @@ group :test do
   gem "database_cleaner"
   gem "rspec-rails", ">= 2.0.1"
   gem "shoulda"
+
+  gem "launchy"
 end
 
 group :development do 
