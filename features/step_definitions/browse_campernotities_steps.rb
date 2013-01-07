@@ -22,6 +22,15 @@ When /^I follow the "(.*?)" link$/ do |action|
   click_link action
 end
 
+When /^I click the 'Show me campings by' dropdown$/ do
+  find("#fp-selector .button.dropdown").click
+end
+
+When /^I select "(.*?)" from the dropdown$/ do |name|
+  find(".button.dropdown a", :text => name).should be_visible
+  find(".button.dropdown").click_link(name)
+end
+
 Then /^I should see a camping "(.*?)"$/ do |name|
   page.should have_content name
 end

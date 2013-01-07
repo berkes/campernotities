@@ -1,8 +1,13 @@
 module FeatureHelper
   def camping(params = {})
+    if params.include? :author
+      author = params.delete :author
+    else
+      author = user
+    end
     params = {:name => "Beautifull Green"}.merge params
     camping = Camping.new(params)
-    camping.author = user
+    camping.author = author
     camping.save!
 
     camping

@@ -1,3 +1,9 @@
-= pluralize(@count, 'camping')
-
-= render :partial => "camping", :collection => @campings
+#content.row
+  #fp-selector.four.columns.centered
+    .large.button.dropdown{:href => "#"}
+      Show me campings by
+      %ul
+        - @authors.each do |author|
+          %li
+            %a{:href => author_path(author)}
+              =author.name

@@ -10,6 +10,12 @@ Given /^a 'create new camping' form$/ do
   click_link "New Camping"
 end
 
+Given /^the User has "(\d*)" Campings$/ do |number|
+  user = AdminUser.find(:first)
+  number.to_i.times do |i|
+    camping(:name => "Camping number #{i}", :author => user)
+  end
+end
 When /^I (?:create|have) a camping "(.*?)"$/ do |name|
   camping(:name => name)
 end
