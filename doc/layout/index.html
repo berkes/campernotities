@@ -23,7 +23,6 @@
   <link rel="stylesheet" href="foundation/stylesheets/app.css">
 
   <script src="foundation/javascripts/modernizr.foundation.js"></script>
-  <script src="foundation/javascripts/foundation.min.js"></script>
 
   <!-- IE Fix for HTML5 Tags -->
   <!--[if lt IE 9]>
@@ -35,45 +34,45 @@
       top:45px;
       left:0;
       width:100%;
-      height:720px;
+      height:700px;
       z-index: -1;
       background: transparent url("campsite.jpg") top center no-repeat;
-      background-size: 100% 720px;
+      background-size: cover;
     }
 
     #fp-selector {
       margin-top: 160px;
     }
+
+    html, body {
+      height: 100%;
+    }
+    #holder{
+      min-height: 100%;
+      position:relative;
+    }
+    #body{
+      padding-bottom: 100px;
+    }
+    footer {
+      color: white;
+      background-color: #3F3F3F;
+      padding: 11px 0;
+
+      height: 3em;
+      width:  100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    #footer a {
+      color: white;
+    }
   </style>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function(){
-      var imgArr = new Array( // relative paths of images
-       'campsite.jpg',
-       'campsite_2.jpg',
-       'campsite_3.jpg',
-       'campsite_4.jpg'
-       );
 
-      /* preload images */
-      var preloadArr = new Array();
-      var i;
-      for(i=0; i < imgArr.length; i++) {
-       preloadArr[i] = new Image();
-       preloadArr[i].src = imgArr[i];
-      }
-
-      var currImg = 1;
-      var intID = setInterval(changeImg, 6000);
-      /* image rotator */
-      function changeImg(){
-        $('.stretcher').animate({opacity: 0.8}, 600, function(){
-          $(this).css('background-image', 'url('+preloadArr[currImg++%preloadArr.length].src+')');
-        }).animate({opacity: 1}, 1000);
-      }
-     });
-  </script>
 </head>
 <body class="front">
+  <div id="holder">
   <nav class="top-bar">
     <!--Title area-->
     <ul>
@@ -84,6 +83,7 @@
       </li>
       <li class="toggle-topbar"><a href="#"></a></li>
     </ul>
+
 
     <section>
       <ul class="left">
@@ -113,9 +113,7 @@
       </ul>
     </section>
   </nav>
-  <div class="stretcher">
-    
-  </div>
+  <div class="stretcher"> </div>
   <div class="row" id="content">
      <div id="fp-selector" class="four columns centered">
         <div href="#" class="large button dropdown">
@@ -139,8 +137,42 @@
       <div class="four columns">
         Built by <a href="http://berk.es">Bèr `berkes` Kessels</a>.
       </div>
-      <div class="four columns"> More <a href="about">about this site</a>.</div>
+      <div class="four columns"> More <a href="about">About this site</a>.</div>
     </div>
   </footer>
+  </div>
+  <!-- Included JS Files (Compressed) -->
+  <script src="foundation/javascripts/jquery.js"></script>
+  <script src="foundation/javascripts/foundation.min.js"></script>
+  
+  <!-- Initialize JS Plugins -->
+  <script src="foundation/javascripts/app.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      var imgArr = new Array( // relative paths of images
+       'campsite.jpg',
+       'campsite_2.jpg',
+       'campsite_3.jpg',
+       'campsite_4.jpg'
+       );
+
+      /* preload images */
+      var preloadArr = new Array();
+      var i;
+      for(i=0; i < imgArr.length; i++) {
+       preloadArr[i] = new Image();
+       preloadArr[i].src = imgArr[i];
+      }
+
+      var currImg = 1;
+      var intID = setInterval(changeImg, 6000);
+      /* image rotator */
+      function changeImg(){
+        $('.stretcher').animate({opacity: 0}, 'slow', function(){
+          $(this).css('background-image', 'url('+preloadArr[currImg++%preloadArr.length].src+')');
+        }).animate({opacity: 1});
+      }
+     });
+  </script>
 </body>
 </html>
