@@ -3,10 +3,8 @@ Campernotities::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  match "/campings"     => "campings#index"
   match "/campings/:id" => "campings#show", :as => :camping
-
   match "/authors/:id" => "authors#show", :as => :author
 
-  root :to => "campings#index"
+  root :to => "authors#index"
 end
