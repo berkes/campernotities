@@ -1,7 +1,11 @@
 class Camping < ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :image
 
   belongs_to :author, :class_name => AdminUser
+  validates_presence_of :author
+
+  # Paperclip
+  has_attached_file :image
 
   def short_description
     if description.nil?

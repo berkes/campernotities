@@ -4,6 +4,11 @@ Feature: Camping Listings
   As a camping-visitor
   I want to see names and short descriptions
 
+  Scenario: Visit homepage
+    Given there is a camping with name "Beautifull Green"
+    When I visit the homepage
+    Then I should see a camping "Beautifull Green"
+
   Scenario: Campings appear on listing
     Given there is a camping with name "Beautifull Green"
     When I visit the camping listing
@@ -28,3 +33,8 @@ Feature: Camping Listings
     And I follow the "read more" link
     Then I should see a camping "Beautifull Green"
     And I should see the description "Beautifull Green Site"
+
+  Scenario: View campings for "Harry"
+    Given there is a camping with name "Beautifull Green" by "Harry"
+    When I visit the camping listing
+    Then I should see a link to "By Harry"

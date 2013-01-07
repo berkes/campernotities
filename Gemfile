@@ -56,3 +56,6 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "activeadmin"
 gem "meta_search", ">= 1.1.0.pre"
+
+# Images
+gem "paperclip", "~> 3.0"
