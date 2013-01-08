@@ -22,6 +22,14 @@ When /^I select "(.*?)" from the dropdown$/ do |name|
   find(".button.dropdown").click_link(name)
 end
 
+When /^I click the logo in the top\-menu$/ do
+  find(".top-bar .name h1 a").click
+end
+
+Then /^I should be on the homepage$/ do
+  current_path.should == root_path
+end
+
 Then /^I should see a camping "(.*?)"$/ do |name|
   page.should have_content name
 end
