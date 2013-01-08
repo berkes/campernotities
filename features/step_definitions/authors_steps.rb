@@ -1,5 +1,5 @@
 Given /^there is an author "(.*?)"$/ do |name|
-  user(:name => name)
+  FactoryGirl.create(:user, :name => name)
 end
 
 When /^I visit the profile for "(.*?)"$/ do |name|

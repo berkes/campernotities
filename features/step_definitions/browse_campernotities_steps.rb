@@ -1,21 +1,12 @@
-Given /^there is a camping with name "(.*?)"$/ do |name|
-  author = AdminUser.new(:name => "Harry", :email => "admin@example.com", :password => "password", :password_confirmation => "password")
-  author.save!
-  @camping = Camping.new(:name => name)
-  @camping.author = author
-  @camping.save!
-end
-
-Given /^with a description "(.*?)"$/ do |description|
-  @camping.update_attribute(:description, description)
-end
-
-When /^I visit the homepage$/ do
+﻿When /^I visit the homepage$/ do
   visit root_url
 end
 
-When /^I visit the camping listing$/ do
-  visit campings_path
+When /^I visit the camping listing for "(.*)"$/ do |username|
+  user = AdminUser.find_by_name(username)
+  user.should_not be_nil
+
+  visit author_path(user)
 end
 
 When /^I follow the "(.*?)" link$/ do |action|
@@ -36,6 +27,11 @@ Then /^I should see a camping "(.*?)"$/ do |name|
 end
 
 Then /^I should see camping "(.*?)"$/ do |title|
+  page.should have_content(title)
+end
+
+Then /^I should see only the camping "(.*?)"$/ do |title|
+  page.assert_selector(:xpath, "//article/h1", :count => 1)
   page.should have_content(title)
 end
 
