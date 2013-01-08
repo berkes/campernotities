@@ -13,6 +13,16 @@ describe AuthorsController do
     end
   end
 
+  context "#home" do
+    it "loads the authors" do
+      AdminUser.stub(:find).and_return([author])
+      AdminUser.should_receive(:find).with :all
+      get :home
+
+      expect(assigns(:authors)).to eq [author]
+    end
+  end
+
   context "#show" do
     before(:each) do
       AdminUser.stub(:find).and_return(author)
