@@ -15,5 +15,9 @@
     %ul.right
       %li.divider
       %li
-        %a{:href => new_admin_user_session_path, :title => "Login for writers"}
-          Login
+        - if admin_user_signed_in?
+          %a{:href => admin_dashboard_path, :title => "Visit administration"}
+            Administration
+        - else
+          %a{:href => new_admin_user_session_path, :title => "Login for writers"}
+            Login

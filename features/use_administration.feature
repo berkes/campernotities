@@ -17,6 +17,12 @@ Feature: Use administration area
 
   Scenario: Find login on hompage
     Given I am not logged in
-    And I visit the homepage
+    When I visit the homepage
     And I follow the "Login" menu-link
     Then I should see a login-form
+
+  Scenario: Find administration-link on homepage
+    Given I have logged in as an Administrator
+    When I visit the homepage
+    And I follow the "Administration" menu-link
+    Then I should see a dashboard
