@@ -1,8 +1,10 @@
-Feature: Camping Listings
+Feature: Writers
 
   So that I can find campings that fit my mood and preference
   As a camping-visitor
-  I want to see names and short descriptions
+  I want to find a list of writers.
+  And I want to see campings by a certain writer.
+  And I want to see names and short descriptions.
 
   Background:
     Given there is a user with name "Anna en Bèr"
