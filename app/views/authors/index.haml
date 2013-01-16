@@ -5,7 +5,7 @@
         %a{:href => author_path(author)}
           =author.name
       %ul
-        - author.campings.limit(5).each do |camping|
+        - author.campings.top(5).each do |camping|
           %li
             %a{:href => camping_path(camping)}
               = image_tag camping.image.url
