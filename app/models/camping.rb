@@ -6,6 +6,11 @@ class Camping < ActiveRecord::Base
 
   default_scope order("created_at")
 
+  # Scope for "top" campings
+  def self.top(amount)
+    order(:created_at).limit(amount)
+  end
+
   # Paperclip
   has_attached_file :image
 
