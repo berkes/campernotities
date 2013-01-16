@@ -1,0 +1,11 @@
+#content.row
+  - @authors.each do |author|
+    %section
+      %h2
+        %a{:href => author_path(author)}
+          =author.name
+      %ul.block-grid.four-up.mobile
+        - author.campings.top(5).each do |camping|
+          %li
+            %a.th{:href => camping_path(camping)}
+              = image_tag camping.image.url

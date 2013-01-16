@@ -12,7 +12,7 @@ Then /^I should see a dashboard$/ do
 end
 
 Then /^I should see a panel titled "(.*?)"$/ do |title|
-  page.find('.panel h3').should have_content title
+  page.should have_selector('.panel h3', :text => title)
 end
 
 Then /^I should see the "(.*?)"-link for "(.*?)"$/ do |action, name|

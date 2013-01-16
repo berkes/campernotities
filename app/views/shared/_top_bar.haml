@@ -1,0 +1,29 @@
+%nav.top-bar
+  %ul
+    %li.name
+      %h1
+        %a{:href => root_path, :title => "To homepage"}
+          Camper
+    %li.toggle-topbar
+      %a{:href => "#"}
+  %section
+    %ul
+      %li.divider
+      %li
+        %a{:href => authors_path} 
+          Authors
+    %ul.right
+      %li.divider
+      - if admin_user_signed_in?
+        %li
+          %a
+            Hi there,
+            = current_admin_user.name
+        %li.divider
+      %li
+        - if admin_user_signed_in?
+          %a{:href => admin_dashboard_path, :title => "Visit administration"}
+            Administration
+        - else
+          %a{:href => new_admin_user_session_path, :title => "Login for writers"}
+            Login
