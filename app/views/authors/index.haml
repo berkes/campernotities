@@ -1,9 +1,11 @@
 #content.row
-  #fp-selector.four.columns.centered
-    .large.button.dropdown{:href => "#"}
-      Show me campings by
+  - @authors.each do |author|
+    %section
+      %h2
+        %a{:href => author_path(author)}
+          =author.name
       %ul
-        - @authors.each do |author|
+        - author.campings.limit(5).each do |camping|
           %li
-            %a{:href => author_path(author)}
-              =author.name
+            %a{:href => camping_path(camping)}
+              = image_tag camping.image.url
