@@ -26,3 +26,8 @@ Feature: Use administration area
     When I visit the homepage
     And I follow the "Administration" menu-link
     Then I should see a dashboard
+
+  Scenario: My name shows me that I am logged in 
+    Given I have logged in as an Administrator
+    When I visit the homepage
+    Then I should see my name in the menu

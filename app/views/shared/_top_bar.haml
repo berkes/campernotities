@@ -14,6 +14,12 @@
           Authors
     %ul.right
       %li.divider
+      - if admin_user_signed_in?
+        %li
+          %a
+            Hi there,
+            = current_admin_user.name
+        %li.divider
       %li
         - if admin_user_signed_in?
           %a{:href => admin_dashboard_path, :title => "Visit administration"}

@@ -71,6 +71,10 @@ Then /^I should see a link to "(.*?)"$/ do |link_title|
   page.should have_link(link_title)
 end
 
+Then /^I should see my name in the menu$/ do
+  page.find(".top-bar").should have_content(the_user.name)
+end
+
 Then /^I should see a list of writers containing "(.*)"$/ do |writer|
   page.find(:xpath, "//section/h2").should have_content(writer)
 end
