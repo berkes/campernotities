@@ -4,8 +4,8 @@
       %h2
         %a{:href => author_path(author)}
           =author.name
-      %ul
+      %ul.block-grid.four-up.mobile
         - author.campings.top(5).each do |camping|
           %li
-            %a{:href => camping_path(camping)}
+            %a.th{:href => camping_path(camping)}
               = image_tag camping.image.url
