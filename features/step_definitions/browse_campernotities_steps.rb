@@ -53,17 +53,13 @@ Then /^I should see only the camping "(.*?)"$/ do |title|
   page.should have_content(title)
 end
 
-Then /^I should see the "(.*)" most recent campings for the User$/ do |number|
-  found_links = []
-  asserted_links = the_user.campings.limit(number).map {|c| camping_path(c) }
-
+Then /^I should see thumbnails for the "(.*)" most recent campings for the User$/ do |number|
   assert_selector(:xpath, "//section/h2", :text => the_user.name)
-  within(:xpath, "//section/h2", :text => the_user.name) do
-    #find the section where the title equals the username, in that section, do:
-    assert_selector(:xpath, "..//ul/li/a/img", :count => number)
-    found_links = all(:xpath, "..//ul/li/a").map {|a| a[:href] }
-  end
+  assert_selector("a.th img", :count => number)
 
+  found_links = all("a.th").map {|a| a[:href] }
+
+  asserted_links = the_user.campings.limit(number).map {|c| camping_path(c) }
   found_links.should eq asserted_links
 end
 

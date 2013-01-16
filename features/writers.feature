@@ -14,11 +14,10 @@ Feature: Writers
     When I follow the "Authors" menu-link
     Then I should see a list of writers containing "Anna en Bèr"
 
-  @wip
   Scenario: Writers overview has recent campings for authors
     Given the User has "10" Campings
     When I am on the Authors page
-    Then I should see the "5" most recent campings for the User
+    Then I should see thumbnails for the "5" most recent campings for the User
 
   Scenario: Campings appear on listing
     Given User has a camping with name "Beautifull Green"
