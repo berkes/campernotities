@@ -4,6 +4,8 @@ class Camping < ActiveRecord::Base
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author
 
+  default_scope order("created_at")
+
   # Paperclip
   has_attached_file :image
 
