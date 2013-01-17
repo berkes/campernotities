@@ -1,8 +1,9 @@
 Feature: Gallery
 
-  @javascript
-  Scenario: Attach images to a Camping
+  Background:
     Given I have logged in as an Administrator
-    And I have a camping "Beautifull Green"
-    When I visit the update page for "Beautifull Green"
+
+  @javascript
+  Scenario: Attach images to a new Camping 
+    When I visit the 'create new camping' form
     Then I can attach new images 

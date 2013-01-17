@@ -2,7 +2,7 @@ Given /^no campings on the campings listing$/ do
   Camping.find(:all).each {|c| c.destroy}
 end
 
-Given /^a 'create new camping' form$/ do
+When /^I visit the 'create new camping' form$/ do
   visit admin_dashboard_path
   click_link "Campings"
   click_link "New Camping"
@@ -61,7 +61,5 @@ Then /^I can attach new images$/ do
   click_link "Add New Image"
   click_link "Add New Image"
 
-  # clicking "Add New Image" button twice adds 2 new fieldsets.
-  # Camping can have images already. Hence checking that there are more than 2
-  page.all("fieldset.has_many_fields input[type=file]").count.should be > 2
+  page.should have_selector("fieldset.has_many_fields input[type=file]", :count => 2)
 end
