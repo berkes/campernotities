@@ -14,6 +14,11 @@ class Camping < ActiveRecord::Base
     order(:created_at).limit(amount)
   end
 
+  # Utility for fetching the main image
+  def main_image
+    images.first.image
+  end
+
   def short_description
     if description.nil?
       ""

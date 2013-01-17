@@ -61,5 +61,7 @@ Then /^I can attach new images$/ do
   click_link "Add New Image"
   click_link "Add New Image"
 
-  page.should have_selector("fieldset.has_many_fields input[type=file]", :count => 2)
+  # clicking "Add New Image" button twice adds 2 new fieldsets.
+  # Camping can have images already. Hence checking that there are more than 2
+  page.all("fieldset.has_many_fields input[type=file]").count.should be > 2
 end

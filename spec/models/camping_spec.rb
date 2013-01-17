@@ -13,4 +13,14 @@ describe Camping do
       Camping.top(5).should eq expected
     end
   end
+
+  describe "#main_image" do
+    it "should return a paperclip image" do
+      image = FactoryGirl.create(:image)
+      camping = FactoryGirl.create(:camping)
+      camping.stub(:images).and_return [image]
+
+      camping.main_image.should be_a_kind_of(Paperclip::Attachment)
+    end
+  end
 end
