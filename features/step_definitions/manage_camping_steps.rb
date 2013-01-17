@@ -56,3 +56,10 @@ end
 When /^I delete the image$/ do
   click_link "Delete image"
 end
+
+Then /^I can attach new images$/ do
+  click_link "Add New Image"
+  click_link "Add New Image"
+
+  page.should have_selector("fieldset.has_many_fields input[type=file]", :count => 2)
+end
