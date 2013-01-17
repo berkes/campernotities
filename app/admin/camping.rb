@@ -1,5 +1,19 @@
 ActiveAdmin.register Camping do
-  form :partial => "form"
+  form :html => { :multipart => true } do |f|
+    f.inputs "Information" do
+      f.input :name
+      f.input :description
+    end
+
+    f.inputs "Images" do
+      f.has_many :images do |img|
+        img.input :image, :as => :file, :label => "Image"
+        #p.input :_destroy, :as=>:boolean, :required => false, :label => 'Remove image'
+      end 
+    end
+
+    f.actions
+  end
 
   controller do
     def create
@@ -14,7 +28,7 @@ ActiveAdmin.register Camping do
       row :name
       row :description
       row :image do
-        image_tag(camping.image.url) if camping.image_file_name
+        camping.images
       end
       row :created_at
       row :updated_at
