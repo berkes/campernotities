@@ -28,7 +28,7 @@ ActiveAdmin.register Camping do
       row :name
       row :description
       row :image do
-        camping.images
+        render :partial => "images/thumb", :collection => camping.images
       end
       row :created_at
       row :updated_at

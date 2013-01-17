@@ -31,8 +31,9 @@ When /^I (?:create|have) a camping "(.*?)"$/ do |name|
   FactoryGirl.create(:camping, :name => name, :author => the_user)
 end
 
-When /^I create a camping with the image "(.*?)"$/ do |image|
-  FactoryGirl.create(:camping, :image => File.open(File.join("spec", "fixtures", image)))
+When /^I (?:create|have) a camping with the image "(.*?)"$/ do |image|
+  image = FactoryGirl.create(:image, :image => File.open(File.join("spec", "fixtures", "images", image)))
+  FactoryGirl.create(:camping, :images => [image])
 end
 
 When /^I attach the image "(.*?)"$/ do |image|
@@ -42,6 +43,11 @@ end
 When /^I visit the update page for "(.*?)"$/ do |name|
   camping = Camping.where(:name => name).first
   visit edit_admin_camping_path camping
+end
+
+When /^I visit the show page for "(.*?)"$/ do |name|
+  camping = Camping.where(:name => name).first
+  visit admin_camping_path camping
 end
 
 When /^I click "(.*)"$/ do |name|
