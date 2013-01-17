@@ -5,7 +5,7 @@ class Camping < ActiveRecord::Base
   validates_presence_of :author
 
   has_many :images
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, :allow_destroy => true
 
   default_scope order("created_at")
 

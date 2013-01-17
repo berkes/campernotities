@@ -59,8 +59,8 @@ When /^I update the name to "(.*?)"$/ do |name|
   step %{I click "Update Camping"}
 end
 
-When /^I delete the image$/ do
-  click_link "Delete image"
+When /^I mark the image for removal$/ do
+  check "Remove image"
 end
 
 Then /^I can attach new images$/ do

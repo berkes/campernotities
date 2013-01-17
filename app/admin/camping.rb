@@ -8,8 +8,8 @@ ActiveAdmin.register Camping do
     f.inputs "Images" do
       f.has_many :images do |img|
         img.input :image, :as => :file, :label => "Image"
-        #p.input :_destroy, :as=>:boolean, :required => false, :label => 'Remove image'
-      end 
+        img.input :_destroy, :as=>:boolean, :required => false, :label => 'Remove image'
+      end
     end
 
     f.actions
