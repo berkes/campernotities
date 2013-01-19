@@ -36,8 +36,8 @@ When /^I (?:create|have) a camping with the image "(.*?)"$/ do |image|
   FactoryGirl.create(:camping, :images => [image])
 end
 
-When /^I attach the image "(.*?)"$/ do |image|
-  page.attach_file("camping_image", File.join("spec", "fixtures", image))
+When /^I update the image to "(.*?)"$/ do |image|
+  page.attach_file("camping_images_attributes_0_image", File.join("spec", "fixtures", "images", image))
 end
 
 When /^I visit the update page for "(.*?)"$/ do |name|
