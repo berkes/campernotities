@@ -33,7 +33,7 @@ end
 
 When /^I (?:create|have) a camping with the image "(.*?)"$/ do |image|
   image = FactoryGirl.create(:image, :image => File.open(File.join("spec", "fixtures", "images", image)))
-  FactoryGirl.create(:camping, :images => [image])
+  camping = FactoryGirl.create(:camping, :images => [image])
 end
 
 When /^I update the image to "(.*?)"$/ do |image|
@@ -69,3 +69,4 @@ Then /^I can attach new images$/ do
 
   page.should have_selector("fieldset.has_many_fields input[type=file]", :count => 2)
 end
+

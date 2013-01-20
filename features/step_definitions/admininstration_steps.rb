@@ -25,6 +25,10 @@ Then /^I should see the "(.*?)"-link for "(.*?)"$/ do |action, name|
   page.should have_xpath("//a[@href='#{action_path}']")
 end
 
+Then /^I should see the image "(.*?)" in a hint$/ do |image|
+  page.should have_xpath("//p[@class='inline-hints']/img[contains(@src, '#{image}')]")
+end
+
 Then /^I should see the image "(.*?)" on the attributes page$/ do |image|
   page.should have_xpath("//img[contains(@src, '#{image}')]")
 end
