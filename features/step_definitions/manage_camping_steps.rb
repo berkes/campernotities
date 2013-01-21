@@ -70,3 +70,6 @@ Then /^I can attach new images$/ do
   page.should have_selector("fieldset.has_many_fields input[type=file]", :count => 2)
 end
 
+Then /^I should see an error telling "(.*?)"$/ do |error|
+  page.find(".errors").should have_content(error)
+end
