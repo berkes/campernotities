@@ -37,11 +37,4 @@ ActiveAdmin.register Camping do
     end
     active_admin_comments
   end
-
-  member_action :destroy_image, :method => :delete do
-    camping = Camping.find(params[:id])
-    camping.image = nil
-    camping.save!
-    redirect_to({:action => :show}, :notice => "Image deleted")
-  end
 end

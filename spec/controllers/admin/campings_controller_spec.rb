@@ -18,21 +18,4 @@ describe Admin::CampingsController do
       @user.campings.first.name.should == "Beautifull Green"
     end
   end
-
-  # @TODO remove method, covered with delete checkbox now.
-  #context "#destroy_image" do
-    #it 'should set image to nil' do
-      #@camping = mock_model(Camping).as_null_object
-
-      #@camping.stub(:image).and_return(@image)
-      #Camping.stub(:find).and_return(@camping)
-
-      #Camping.should_receive(:find).with(@camping.id.to_s)
-      #@camping.should_receive(:image=).with(nil)
-      #@camping.should_receive(:save!)
-
-      #delete :destroy_image, :id => @camping.id
-      #response.should redirect_to :action => :show
-    #end
-  #end
 end
