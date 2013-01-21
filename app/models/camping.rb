@@ -3,7 +3,6 @@ class Camping < ActiveRecord::Base
 
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author
-  validates_presence_of :name
   validates_presence_of :images, :message => "At least one image is required"
 
   has_many :images
