@@ -6,7 +6,7 @@ describe Camping do
   it { should have_many(:images) }
   it { should accept_nested_attributes_for(:images) }
 
-  it { should validate_presence_of(:images) }
+  it { should validate_presence_of(:images).with_message(/At least one image/) }
 
   describe "#top" do
     it "should return the 5 last campings" do
