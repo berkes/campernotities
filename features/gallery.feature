@@ -13,7 +13,6 @@ Feature: Gallery
     When I visit the show page for "Beautifull Green"
     Then I should see the image "green_small.jpg" on the attributes page
 
-  @wip
   Scenario: Attached images show as thumbnail on the "hint"
     Given I have a camping with the image "green_small.jpg"
     When I visit the update page for "Beautifull Green"
