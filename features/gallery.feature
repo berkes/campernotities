@@ -33,3 +33,8 @@ Feature: Gallery
     And I click "Update Camping"
     Then I should see the image "brown_small.jpg" on the attributes page
 
+  @wip
+  Scenario: Attach at least one image to a camping
+    When I visit the 'create new camping' form
+    And I click "Create Camping"
+    Then I should see an error telling "At least one image is required"

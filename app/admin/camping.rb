@@ -1,5 +1,7 @@
 ActiveAdmin.register Camping do
   form :html => { :multipart => true } do |f|
+    f.semantic_errors :images
+
     f.inputs "Information" do
       f.input :name
       f.input :description
