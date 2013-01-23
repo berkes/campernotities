@@ -3,7 +3,7 @@ class Camping < ActiveRecord::Base
 
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author
-  validates_presence_of :images, :message => "At least one image is required"
+  validate :should_have_images
 
   has_many :images
   accepts_nested_attributes_for :images, :allow_destroy => true
@@ -26,5 +26,9 @@ class Camping < ActiveRecord::Base
     else
       description.slice(0,140)
     end
+  end
+
+  def should_have_images
+    errors.add(:base, "At least one image is required") if images.blank?
   end
 end

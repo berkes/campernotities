@@ -6,8 +6,14 @@ describe Camping do
   it { should have_many(:images) }
   it { should accept_nested_attributes_for(:images) }
 
-  it { should validate_presence_of(:images).with_message(/At least one image/) }
-
+  context "without images" do
+    it "should be invalid" do
+      camping = Camping.new()
+      camping.images = []
+      camping.should be_invalid
+      camping.should have(2).errors_on(:base)
+    end
+  end
   describe "#top" do
     it "should return the 5 last campings" do
       FactoryGirl.create_list(:camping, 7)
