@@ -11,7 +11,7 @@ describe Camping do
       camping = Camping.new()
       camping.images = []
       camping.should be_invalid
-      camping.should have(2).errors_on(:base)
+      camping.should have(1).errors_on(:base)
     end
   end
   describe "#top" do
