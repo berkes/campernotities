@@ -1,4 +1,4 @@
-Feature: Gallery
+Feature: Gallery Administration
 
   Background:
     Given I have logged in as an Administrator
