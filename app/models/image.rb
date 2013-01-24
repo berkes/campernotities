@@ -3,7 +3,10 @@ class Image < ActiveRecord::Base
 
   # Paperclip
   has_attached_file :image,
-    :styles => { :thumb => "150x150>" }
+    :styles => { 
+      :thumb => "150x150>",
+      :large => "1000x"
+    }
   validates :image, 
     :presence => :true,
     :attachment_content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png"] },

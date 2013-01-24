@@ -1,4 +1,8 @@
-﻿When /^I (?:visit|am on) the homepage$/ do
+﻿Given /^A Camping$/ do
+  FactoryGirl.create(:camping)
+end
+
+When /^I (?:visit|am on) the homepage$/ do
   visit root_path
 end
 
@@ -11,6 +15,10 @@ When /^I visit the camping listing for "(.*)"$/ do |username|
   user.should_not be_nil
 
   visit author_url(user)
+end
+
+When /^I visit the camping page$/ do
+  visit camping_path the_camping
 end
 
 When /^I follow the "(.*?)" link$/ do |action|
@@ -46,6 +54,14 @@ end
 
 Then /^I should see camping "(.*?)"$/ do |title|
   page.should have_content(title)
+end
+
+Then /^I should see a large image$/ do
+  image_path = the_camping.main_image.url(:large)
+  image = page.find(:xpath, "//article/img[@class='large']")
+
+  image[:src].should eq image_path
+  get(image[:src]).status.should be 200
 end
 
 Then /^I should see only the camping "(.*?)"$/ do |title|

@@ -4,6 +4,9 @@ module FeatureHelper
 
     @user
   end
+  def the_camping
+    @camping ||= Camping.find(:first)
+  end
 end
 
 World(FeatureHelper)

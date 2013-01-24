@@ -1,5 +1,8 @@
-%article
-  %h1
-    = @camping.name
-  .description
-    = @camping.description
+.row
+  %article
+    .twelve.colums
+      = image_tag @camping.main_image.url(:large), :class => "large"
+    %h1
+      = @camping.name
+    .description
+      = @camping.description
