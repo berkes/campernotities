@@ -56,12 +56,16 @@ Then /^I should see camping "(.*?)"$/ do |title|
   page.should have_content(title)
 end
 
-Then /^I should see a large image$/ do
-  image_path = the_camping.main_image.url(:large)
-  image = page.find(:xpath, "//article/img[@class='large']")
+Then /^I should see all images as large image$/ do
+  expected_image_paths = the_camping.images.map {|i| i.image.url(:large) }
+  found_image_paths    = page.all("article img.large").map {|i| i[:src] }
 
-  image[:src].should eq image_path
-  get(image[:src]).status.should be 200
+  expected_image_paths.should eq expected_image_paths
+
+  #Determine if we actually have the images.
+  found_image_paths.each do |path|
+    get(path).status.should be 200
+  end
 end
 
 Then /^I should see only the camping "(.*?)"$/ do |title|
