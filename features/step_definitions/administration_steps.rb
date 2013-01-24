@@ -2,12 +2,6 @@ Given /^no campings on the campings listing$/ do
   Camping.find(:all).each {|c| c.destroy}
 end
 
-When /^I visit the 'create new camping' form$/ do
-  visit admin_dashboard_path
-  click_link "Campings"
-  click_link "New Camping"
-end
-
 Given /^User has a camping with name "(.*?)"$/ do |name|
   FactoryGirl.create(:camping, :author => the_user)
 end
@@ -38,20 +32,6 @@ end
 
 When /^I update the image to "(.*?)"$/ do |image|
   page.attach_file("camping_images_attributes_0_image", File.join("spec", "fixtures", "images", image))
-end
-
-When /^I visit the update page for "(.*?)"$/ do |name|
-  camping = Camping.where(:name => name).first
-  visit edit_admin_camping_path camping
-end
-
-When /^I visit the show page for "(.*?)"$/ do |name|
-  camping = Camping.where(:name => name).first
-  visit admin_camping_path camping
-end
-
-When /^I click "(.*)"$/ do |name|
-  click_button name
 end
 
 When /^I update the name to "(.*?)"$/ do |name|

@@ -7,6 +7,26 @@ When /^I visit the "(.*?)" administration page$/ do |menu|
   click_link menu
 end
 
+When /^I visit the 'create new camping' form$/ do
+  visit admin_dashboard_path
+  click_link "Campings"
+  click_link "New Camping"
+end
+
+When /^I visit the update page for "(.*?)"$/ do |name|
+  camping = Camping.where(:name => name).first
+  visit edit_admin_camping_path camping
+end
+
+When /^I visit the show page for "(.*?)"$/ do |name|
+  camping = Camping.where(:name => name).first
+  visit admin_camping_path camping
+end
+
+When /^I click "(.*)"$/ do |name|
+  click_button name
+end
+
 Then /^I should see a dashboard$/ do
   page.should have_content("Dashboard")
 end
