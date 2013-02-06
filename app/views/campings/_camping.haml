@@ -1,9 +1,10 @@
 %article
   %h1
-    = camping.name
-  .author
-    = link_to "By #{camping.author.name}", author_path(camping.author)
-  .description
-    = camping.short_description
+    = link_to camping.name, camping_path(camping)
+  %ul.block-grid.four-up.mobile
+    - camping.images.limit(4).each do |image|
+      %li
+        %a.th{:href => camping_path(camping)}
+          = image_tag image.image.url(:thumb)
   .more
     = link_to "read more", camping_path(camping)

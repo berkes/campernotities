@@ -2,6 +2,13 @@
   FactoryGirl.create(:camping)
 end
 
+Given /^"(.*?)" have (\d+) campings$/ do |name, amount|
+  author = FactoryGirl.create(:author, :name => name)
+  amount.to_i.times do
+    FactoryGirl.create(:camping, :author => author)
+  end
+end
+
 When /^I (?:visit|am on) the homepage$/ do
   visit root_path
 end
@@ -42,7 +49,7 @@ Then /^I should be on the homepage$/ do
 end
 
 Then /^I should see "(.*?)" in the dropdown$/ do |name|
-  find(".button.dropdown > ul").should be_visible
+  find(".button.droup to pdown > ul").should be_visible
   within(".button.dropdown > ul") do
     have_link(name)
   end
@@ -54,6 +61,19 @@ end
 
 Then /^I should see camping "(.*?)"$/ do |title|
   page.should have_content(title)
+end
+
+Then /^I should see between one and (\d+) thumbnails for each camping$/ do |upper|
+  min_found = upper.to_i
+  max_found = 0
+  page.all("article").each do |article|
+    images = article.all("a.th img").count
+    min_found = [images, min_found].min
+    max_found = [images, max_found].max
+  end
+
+  min_found.should be > 0
+  max_found.should be <= upper.to_i
 end
 
 Then /^I should see all images as large image$/ do

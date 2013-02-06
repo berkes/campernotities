@@ -24,15 +24,10 @@ Feature: Writers
     When I visit the camping listing for "Anna en Bèr"
     Then I should see a camping "Beautifull Green"
 
-  Scenario: Description under 14 characters.
-    Given User has a camping with a description "Beautifull green."
-    When I visit the camping listing for "Anna en Bèr"
-    Then I should see the description "Beautifull green."
-
-  Scenario: Long description, over 140 characters.
-    Given User has a camping with a description "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green."
-    When I visit the camping listing for "Anna en Bèr"
-    Then I should see the description "Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beautifull green Beau"
+  Scenario: View the thumbnails
+    Given "Bèr en Anna" have 10 campings
+    When I visit the camping listing for "Bèr en Anna"
+    Then I should see between one and 5 thumbnails for each camping
 
   Scenario: Follow link to camping page
     Given User has a camping with a description "Beautifull Green Site"

@@ -20,14 +20,6 @@ class Camping < ActiveRecord::Base
     images.first.image
   end
 
-  def short_description
-    if description.nil?
-      ""
-    else
-      description.slice(0,140)
-    end
-  end
-
   def should_have_images
     errors.add(:base, "At least one image is required") if images.blank?
   end
