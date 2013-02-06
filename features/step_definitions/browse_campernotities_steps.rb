@@ -1,4 +1,15 @@
-﻿When /^I (?:visit|am on) the homepage$/ do
+﻿Given /^A Camping$/ do
+  FactoryGirl.create(:camping)
+end
+
+Given /^"(.*?)" have (\d+) campings$/ do |name, amount|
+  author = FactoryGirl.create(:author, :name => name)
+  amount.to_i.times do
+    FactoryGirl.create(:camping, :author => author)
+  end
+end
+
+When /^I (?:visit|am on) the homepage$/ do
   visit root_path
 end
 
@@ -11,6 +22,10 @@ When /^I visit the camping listing for "(.*)"$/ do |username|
   user.should_not be_nil
 
   visit author_url(user)
+end
+
+When /^I visit the camping page$/ do
+  visit camping_path the_camping
 end
 
 When /^I follow the "(.*?)" link$/ do |action|
@@ -34,7 +49,7 @@ Then /^I should be on the homepage$/ do
 end
 
 Then /^I should see "(.*?)" in the dropdown$/ do |name|
-  find(".button.dropdown > ul").should be_visible
+  find(".button.droup to pdown > ul").should be_visible
   within(".button.dropdown > ul") do
     have_link(name)
   end
@@ -46,6 +61,31 @@ end
 
 Then /^I should see camping "(.*?)"$/ do |title|
   page.should have_content(title)
+end
+
+Then /^I should see between one and (\d+) thumbnails for each camping$/ do |upper|
+  min_found = upper.to_i
+  max_found = 0
+  page.all("article").each do |article|
+    images = article.all("a.th img").count
+    min_found = [images, min_found].min
+    max_found = [images, max_found].max
+  end
+
+  min_found.should be > 0
+  max_found.should be <= upper.to_i
+end
+
+Then /^I should see all images as large image$/ do
+  expected_image_paths = the_camping.images.map {|i| i.image.url(:large) }
+  found_image_paths    = page.all("article img.large").map {|i| i[:src] }
+
+  expected_image_paths.should eq found_image_paths
+
+  #Determine if we actually have the images.
+  found_image_paths.each do |path|
+    get(path).status.should be 200
+  end
 end
 
 Then /^I should see only the camping "(.*?)"$/ do |title|

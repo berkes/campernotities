@@ -1,5 +1,12 @@
-%article
-  %h1
-    = @camping.name
-  .description
-    = @camping.description
+.row
+  %article
+    #featured.twelve.colums
+      - @camping.images.each do |image|
+        = image_tag image.image.url(:large), :class => "large", :data => { :thumb => image.image.url(:thumb) }
+    %h1
+      = @camping.name
+    .description
+      = @camping.description
+
+- content_for :javascript do
+  = render(:partial => "shared/orbit", :formats => [:js])

@@ -1,8 +1,12 @@
 class Camping < ActiveRecord::Base
-  attr_accessible :description, :name, :image
+  attr_accessible :description, :name, :images_attributes
 
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author
+  validate :should_have_images
+
+  has_many :images
+  accepts_nested_attributes_for :images, :allow_destroy => true
 
   default_scope order("created_at")
 
@@ -11,14 +15,12 @@ class Camping < ActiveRecord::Base
     order(:created_at).limit(amount)
   end
 
-  # Paperclip
-  has_attached_file :image
+  # Utility for fetching the main image
+  def main_image
+    images.first.image
+  end
 
-  def short_description
-    if description.nil?
-      ""
-    else
-      description.slice(0,140)
-    end
+  def should_have_images
+    errors.add(:base, "At least one image is required") if images.blank?
   end
 end

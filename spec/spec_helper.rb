@@ -9,8 +9,7 @@ require "paperclip/matchers"
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-# Use factories in "features"
-require Rails.root.join("features/support/factories.rb")
+require Rails.root.join("spec", "fixtures", "factories.rb")
 
 RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers

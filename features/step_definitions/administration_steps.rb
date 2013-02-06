@@ -2,12 +2,6 @@ Given /^no campings on the campings listing$/ do
   Camping.find(:all).each {|c| c.destroy}
 end
 
-Given /^a 'create new camping' form$/ do
-  visit admin_dashboard_path
-  click_link "Campings"
-  click_link "New Camping"
-end
-
 Given /^User has a camping with name "(.*?)"$/ do |name|
   FactoryGirl.create(:camping, :author => the_user)
 end
@@ -31,21 +25,13 @@ When /^I (?:create|have) a camping "(.*?)"$/ do |name|
   FactoryGirl.create(:camping, :name => name, :author => the_user)
 end
 
-When /^I create a camping with the image "(.*?)"$/ do |image|
-  FactoryGirl.create(:camping, :image => File.open(File.join("spec", "fixtures", image)))
+When /^I (?:create|have) a camping with the image "(.*?)"$/ do |image|
+  image = FactoryGirl.create(:image, :image => File.open(File.join("spec", "fixtures", "images", image)))
+  camping = FactoryGirl.create(:camping, :images => [image])
 end
 
-When /^I attach the image "(.*?)"$/ do |image|
-  page.attach_file("camping_image", File.join("spec", "fixtures", image))
-end
-
-When /^I visit the update page for "(.*?)"$/ do |name|
-  camping = Camping.where(:name => name).first
-  visit edit_admin_camping_path camping
-end
-
-When /^I click "(.*)"$/ do |name|
-  click_button name
+When /^I update the image to "(.*?)"$/ do |image|
+  page.attach_file("camping_images_attributes_0_image", File.join("spec", "fixtures", "images", image))
 end
 
 When /^I update the name to "(.*?)"$/ do |name|
@@ -53,6 +39,17 @@ When /^I update the name to "(.*?)"$/ do |name|
   step %{I click "Update Camping"}
 end
 
-When /^I delete the image$/ do
-  click_link "Delete image"
+When /^I mark the image for removal$/ do
+  check "Remove image"
+end
+
+Then /^I can attach new images$/ do
+  click_link "Add New Image"
+  click_link "Add New Image"
+
+  page.should have_selector("fieldset.has_many_fields input[type=file]", :count => 2)
+end
+
+Then /^I should see an error telling "(.*?)"$/ do |error|
+  page.find(".errors").should have_content(error)
 end
