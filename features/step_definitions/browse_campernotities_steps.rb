@@ -60,7 +60,7 @@ Then /^I should see all images as large image$/ do
   expected_image_paths = the_camping.images.map {|i| i.image.url(:large) }
   found_image_paths    = page.all("article img.large").map {|i| i[:src] }
 
-  expected_image_paths.should eq expected_image_paths
+  expected_image_paths.should eq found_image_paths
 
   #Determine if we actually have the images.
   found_image_paths.each do |path|

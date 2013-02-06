@@ -10,7 +10,7 @@ FactoryGirl.define do
     f.name "Beautifull Green"
     f.association :author, :factory => :admin_user
     f.images {
-      [FactoryGirl.create(:image)]
+      6.times.map {|i| FactoryGirl.create(:image) }
     }
   end
 
