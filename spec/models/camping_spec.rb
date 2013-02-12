@@ -31,4 +31,66 @@ describe Camping do
       camping.main_image.should be_a_kind_of(Paperclip::Attachment)
     end
   end
+
+  describe "geocoder" do
+    before(:each) do
+      @camping = FactoryGirl.create(:camping)
+    end
+
+    describe "#latitude" do
+      it "should require longitude when provided" do
+        @camping.latitude = 5.9757149
+        @camping.longitude = ''
+        @camping.should_not be_valid
+      end
+
+      it "should be between -90 and 90" do
+        @camping.longitude = 10
+        @camping.latitude = -91
+        @camping.should_not be_valid
+        @camping.latitude = 91
+        @camping.should_not be_valid
+      end
+    end
+
+    describe "#longitude" do
+      it "should require latitude when provided" do
+        @camping.longitude = 51.77802459999999
+        @camping.latitude = ''
+        @camping.should_not be_valid
+
+        @camping.longitude = 0
+        @camping.latitude = ''
+        @camping.should_not be_valid
+      end
+
+      it "should be between -180 and 180" do
+        @camping.latitude = 10
+        @camping.longitude = -181
+        @camping.should_not be_valid
+        @camping.longitude = 181
+        @camping.should_not be_valid
+      end
+    end
+
+    it { should validate_numericality_of(:latitude) }
+    it { should validate_numericality_of(:longitude) }
+
+    it "should allow 0,0 as valid point" do
+      @camping.latitude = 0
+      @camping.longitude = 0
+      @camping.should be_valid
+    end
+    it "should be valid when both latitude and longitude are provided" do
+      @camping.longitude = 51.77802459999999
+      @camping.latitude = 5.9757149
+      @camping.should be_valid
+    end
+
+    it "should be valid when neither latitude nor longitude are provided" do
+      @camping.longitude = ""
+      @camping.latitude = ""
+      @camping.should be_valid
+    end
+  end
 end
