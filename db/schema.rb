@@ -49,12 +49,12 @@ ActiveRecord::Schema.define(:version => 20130211151308) do
 
   create_table "campings", :force => true do |t|
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.string   "name"
     t.integer  "author_id"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude",    :precision => 15, :scale => 10
+    t.decimal  "longitude",   :precision => 15, :scale => 10
   end
 
   create_table "images", :force => true do |t|

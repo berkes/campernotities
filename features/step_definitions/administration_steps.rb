@@ -53,3 +53,7 @@ end
 Then /^I should see an error telling "(.*?)"$/ do |error|
   page.find(".errors").should have_content(error)
 end
+
+Then /^the form should have no errors$/ do
+  page.should_not have_selector("ul.errors")
+end

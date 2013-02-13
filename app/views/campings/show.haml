@@ -1,12 +1,24 @@
 .row
   %article
+    %h1
+      = @camping.name
     #featured.twelve.colums
       - @camping.images.each do |image|
         = image_tag image.image.url(:large), :class => "large", :data => { :thumb => image.image.url(:thumb) }
-    %h1
-      = @camping.name
-    .description
-      = @camping.description
+    .row
+      .six.columns.description
+        = @camping.description
+      .six.columns
+        - unless @camping.latitude.blank?
+          = map_tag({:latitude => @camping.latitude, :longitude => @camping.longitude, :width => 485, :height => 300 })
+        %table.twelve
+          %tbody
+            - unless @camping.latitude.blank?
+              %tr.geo
+                %td.name
+                  Geo
+                %td.value
+                  = "#{@camping.latitude}, #{@camping.longitude}"
 
 - content_for :javascript do
   = render(:partial => "shared/orbit", :formats => [:js])

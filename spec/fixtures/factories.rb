@@ -12,6 +12,11 @@ FactoryGirl.define do
     f.images {
       6.times.map {|i| FactoryGirl.create(:image) }
     }
+
+    factory :camping_with_geo do
+      f.latitude 51.77802459999999
+      f.longitude 5.9757149
+    end
   end
 
   factory :admin_user, :aliases => [:author, :user] do |f|

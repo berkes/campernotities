@@ -9,8 +9,8 @@ class Camping < ActiveRecord::Base
   validate :should_have_images
 
   validate :lat_lon_combination
-  validates :latitude, :numericality  => { :greater_than => -90, :less_than  => 90 }, :allow_blank  => true
-  validates :longitude, :numericality => { :greater_than => -180, :less_than => 180 }, :allow_blank => true
+  validates :latitude, :numericality  => { :greater_than_or_equal_to => -90, :less_than_or_equal_to  => 90 }, :allow_blank  => true
+  validates :longitude, :numericality => { :greater_than_or_equal_to => -180, :less_than_or_equal_to => 180 }, :allow_blank => true
 
   default_scope order("created_at")
 

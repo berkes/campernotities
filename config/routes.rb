@@ -7,5 +7,7 @@ Campernotities::Application.routes.draw do
   match "/authors/:id" => "authors#show", :as => :author
   match "/authors" => "authors#index", :as => :authors
 
+  get "maps" => "maps#index"
+
   root :to => "authors#home"
 end
