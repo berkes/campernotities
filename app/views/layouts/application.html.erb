@@ -27,9 +27,9 @@
   <%= render "shared/top_bar" %>
   <%= yield %>
 
-  <%- if content_for?(:javascript) %>
+  <%- if content_for?(:javascript_body) %>
     <script>
-      <%= yield(:javascript) %>
+      <%= yield(:javascript_body) %>
     </script>
   <% end %>
 </body>
