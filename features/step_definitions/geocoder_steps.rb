@@ -2,6 +2,10 @@ Given /^a camping with latitude latitude "(.*?)" and longitude "(.*?)" exists$/ 
   FactoryGirl.create(:camping, :latitude => latitude, :longitude => longitude)
 end
 
+Given /^A Camping without a geocode$/ do
+  FactoryGirl.create(:camping, :latitude => nil, :longitude => nil)
+end
+
 Given /^(\d+) geocoded Campings$/ do |amount|
   amount.to_i.times do
     FactoryGirl.create(:camping_with_geo)

@@ -25,7 +25,7 @@ Feature: Place campings on a Map
     Then I should see a table with a geo property
 
   Scenario: A camping without latitude and longitude
-    Given A Camping
+    Given A Camping without a geocode
     When I visit the camping page
     Then I should not see a Google Map
     And I should not see a table with a geo property
