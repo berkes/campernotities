@@ -20,5 +20,5 @@
                 %td.value
                   = "#{@camping.latitude}, #{@camping.longitude}"
 
-- content_for :javascript do
+- content_for :javascript_body do
   = render(:partial => "shared/orbit", :formats => [:js])
