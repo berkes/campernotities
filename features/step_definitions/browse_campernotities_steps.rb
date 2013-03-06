@@ -49,7 +49,7 @@ Then /^I should be on the homepage$/ do
 end
 
 Then /^I should see "(.*?)" in the dropdown$/ do |name|
-  find(".button.droup to pdown > ul").should be_visible
+  find(".button.dropdown > ul").should be_visible
   within(".button.dropdown > ul") do
     have_link(name)
   end
