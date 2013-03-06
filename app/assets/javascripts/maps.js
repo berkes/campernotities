@@ -23,4 +23,3 @@ map.addMarker = function (latitude, longitude, title) {
   map.markers.unshift({latitude: latitude, longitude: longitude, title: title});
 }
 
-$(document).ready(map.init);
