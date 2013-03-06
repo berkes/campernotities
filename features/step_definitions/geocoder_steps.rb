@@ -39,3 +39,9 @@ Then /^I should (not\s)?see a table with a geo property$/ do |toggle|
   operator = (toggle ? :should_not : :should)
   page.send(operator, have_selector("table tr.geo"))
 end
+
+Then /^I should see all the campings on the map$/ do
+  Camping.geocoded.top(50).each do |camping|
+    page.should have_xpath "//script[contains(.,'map.addMarker(#{camping.latitude}, #{camping.longitude}, \"#{camping.name}\")')]"
+  end
+end

@@ -20,7 +20,7 @@
 	
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application" %>
-  
+  <%= yield :javascript_tags %>
   <%= csrf_meta_tags %>
 </head>
 <body>

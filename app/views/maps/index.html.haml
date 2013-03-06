@@ -1,0 +1,12 @@
+- content_for :javascript_tags do
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyC1GdwD4o0-PSz_5afcPM5_P_OsKZGf6Fg&sensor=true"
+
+- content_for :javascript do
+  = render :partial => "pin", :collection => @pins
+
+.row
+  %h1.twelve.columns Campings on the map
+  #map_canvas.twelve.columns
+
+.row
+  = render @pins
