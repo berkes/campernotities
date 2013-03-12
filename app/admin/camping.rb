@@ -13,6 +13,11 @@ ActiveAdmin.register Camping do
       end
     end
 
+    f.inputs "Address" do
+      f.input :latitude
+      f.input :longitude
+    end
+
     f.actions
   end
 

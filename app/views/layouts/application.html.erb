@@ -20,16 +20,16 @@
 	
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application" %>
-  
+  <%= yield :javascript_tags %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <%= render "shared/top_bar" %>
   <%= yield %>
 
-  <%- if content_for?(:javascript) %>
+  <%- if content_for?(:javascript_body) %>
     <script>
-      <%= yield(:javascript) %>
+      <%= yield(:javascript_body) %>
     </script>
   <% end %>
 </body>
