@@ -4,6 +4,9 @@ class Camping < ActiveRecord::Base
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author
 
+  has_many :labels
+  accepts_nested_attributes_for :labels
+
   has_many :images
   accepts_nested_attributes_for :images, :allow_destroy => true
   validate :should_have_images
