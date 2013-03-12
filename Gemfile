@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '~> 3.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -43,6 +43,7 @@ end
 
 group :development, :test do
   gem "debugger"
+  gem "spork-rails"
 end
 
 # To use ActiveModel has_secure_password
