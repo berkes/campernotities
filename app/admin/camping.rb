@@ -10,7 +10,6 @@ ActiveAdmin.register Camping do
     f.inputs "Images" do
       f.has_many :images do |img|
         img.input :image, :as => :file, :label => "Image", :hint => img.object.image.nil? ? img.template.content_tag(:span, "No Image Yet") : img.template.image_tag(img.object.image.url(:thumb))
-        img.input :_destroy, :as=>:boolean, :required => false, :label => 'Remove image'
       end
     end
 
