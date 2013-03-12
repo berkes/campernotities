@@ -43,6 +43,7 @@ end
 
 group :development, :test do
   gem "debugger"
+  gem "spork-rails"
 end
 
 # To use ActiveModel has_secure_password
