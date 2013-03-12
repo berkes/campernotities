@@ -17,6 +17,10 @@ When /^I fill in the form with latitude "(.*?)" and longitude "(.*?)"$/ do |lati
   fill_in :camping_longitude,    :with => longitude
 end
 
+When /^I visit the map page with latitude=(\d+) and longitude=(\d+)$/ do |latitude, longitude|
+  visit maps_path({ :latitude => latitude, :longitude => longitude, :test => true })
+end
+
 Then /^the camping should have a latitude and longitude$/ do
   the_camping.latitude.should_not be_nil
   the_camping.longitude.should_not be_nil
@@ -48,4 +52,17 @@ Then /^I should see all the campings on the map$/ do
   Camping.geocoded.top(50).each do |camping|
     page.should have_xpath "//script[contains(.,'map.addMarker(#{camping.latitude}, #{camping.longitude}, \"#{camping.name}\")')]"
   end
+end
+
+Then /^it should ask me if I allow to share my current location$/ do
+  page.should have_xpath "//script[contains(.,'map.setup()')]"
+end
+
+Then /^it should center the map on latitude "(.*?)" and longitude "(.*?)"$/ do |latitude, longitude|
+  page.should have_content "latitude: #{latitude} longitude: #{longitude}"
+end
+
+Then /^it should center the map on my current location$/ do
+  visit maps_path({:latitude => 20, :longitude => 20, :test => true})
+  step %{it should center the map on latitude "20" and longitude "20"}
 end

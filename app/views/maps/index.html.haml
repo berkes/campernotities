@@ -3,7 +3,9 @@
 
 - content_for :javascript_body do
   = render :partial => "pin", :collection => @pins
-  $(document).ready(map.init);
+  $(document).ready(function() {                        |
+    map.setup(); |
+  });                                                   |
 
 .row
   %h1.twelve.columns Campings on the map
