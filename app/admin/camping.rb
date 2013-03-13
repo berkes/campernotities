@@ -17,6 +17,7 @@ ActiveAdmin.register Camping do
     f.inputs "Labels" do
       f.has_many :labels do |label|
         label.input :name
+        label.input :value, :hint => "Leave empty for simple labels, such as 'Dogs Allowed'"
       end
     end
 

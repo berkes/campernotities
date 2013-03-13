@@ -57,6 +57,10 @@ Then /^I should not see the image in attributes on the attributes page$/ do
   page.should_not have_xpath('//*[@class="attributes_table camping"]//img')
 end
 
-Then /^I should see the label "(.*?)" in attributes on the attributes page$/ do |name|
-  find(".attributes_table").should have_content name
+Then /^I should see the label "(.*?)" in attributes$/ do |name|
+  find(".attributes_table dl dt").should have_content name
+end
+
+Then /^I should see the value "(.*?)" with the label$/ do |value|
+  find(".attributes_table dl dd").should have_content value
 end
