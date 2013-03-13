@@ -2,6 +2,30 @@
   FactoryGirl.create(:camping)
 end
 
+Given /^(\d+) Campings$/ do |amount|
+  amount.to_i.times do
+    step "A Camping"
+  end
+end
+
+Given /^a camping with the following labels:$/ do |label_table|
+  labels = []
+  label_table.hashes.each do |row|
+    row['value'] = nil if row['value'] == 'nil'
+    labels << FactoryGirl.create(:label, :name => row['name'], :value => row['value'])
+  end
+  FactoryGirl.create(:camping, :labels => labels)
+end
+
+Given /^a camping named "(.*?)" with the following labels:$/ do |name, label_table|
+  labels = []
+  label_table.hashes.each do |row|
+    row['value'] = nil if row['value'] == 'nil'
+    labels << FactoryGirl.create(:label, :name => row['name'], :value => row['value'])
+  end
+  FactoryGirl.create(:camping, :labels => labels, :name => name)
+end
+
 Given /^"(.*?)" have (\d+) campings$/ do |name, amount|
   author = FactoryGirl.create(:author, :name => name)
   amount.to_i.times do
@@ -11,6 +35,10 @@ end
 
 When /^I (?:visit|am on) the homepage$/ do
   visit root_path
+end
+
+When /^I (?:visit|am on) the search page$/ do
+  visit search_path
 end
 
 When /^I am on the Authors page$/ do
@@ -117,4 +145,13 @@ end
 
 Then /^I should see a list of writers containing "(.*)"$/ do |writer|
   page.find(:xpath, "//section/h2").should have_content(writer)
+end
+
+Then /^I should see a table with a the following label properties:$/ do |table|
+  within 'table.properties' do
+    table.hashes.each do |label|
+      should have_content label['name']
+      should have_content label['value'] unless label['value'].nil?
+    end
+  end
 end

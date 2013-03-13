@@ -26,6 +26,11 @@ FactoryGirl.define do
     f.password_confirmation "password"
   end
 
+  factory :label do |f|
+    f.name "Amount of places"
+    f.value "1-10"
+  end
+
   factory :image do |f|
     f.image File.open(File.join(File.expand_path(File.dirname(__FILE__)), "images", "brown_small.jpg"))
   end
