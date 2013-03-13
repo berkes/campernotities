@@ -1,4 +1,4 @@
-Feature: Labels
+Feature: Create Labels
 
   So that I can make campings filterable
   As an author
@@ -21,3 +21,5 @@ Feature: Labels
     And I click "Update Camping"
     Then I should see the label "Amount of places" in attributes
     And I should see the value "10-100" with the label
+
+
