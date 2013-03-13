@@ -1,5 +1,5 @@
 class Camping < ActiveRecord::Base
-  attr_accessible :description, :name, :images_attributes, :latitude, :longitude
+  attr_accessible :description, :name, :images_attributes, :labels_attributes, :latitude, :longitude
 
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author

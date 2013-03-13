@@ -1,13 +1,12 @@
 require 'rubygems'
 require 'spork'
+require 'cucumber/rails'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
-
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
-  require 'cucumber/rails'
 
   # Include factory girl factories from rspec
   require File.join(Rails.root, "spec", "fixtures", "factories.rb")
@@ -33,7 +32,7 @@ Spork.prefork do
   # 2) Set the value below to true. Beware that doing this globally is not
   # recommended as it will mask a lot of errors for you!
   #
-  ActionController::Base.allow_rescue = false
+  # ActionController::Base.allow_rescue = false
 
   # Remove/comment out the lines below if your app doesn't have a database.
   # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
@@ -61,13 +60,12 @@ Spork.prefork do
   # Possible values are :truncation and :transaction
   # The :transaction strategy is faster, but might give you threading problems.
   # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-  Cucumber::Rails::Database.javascript_strategy = :truncation
 
+  Cucumber::Rails::Database.javascript_strategy = :truncation
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-
 end
 
 # --- Instructions ---
