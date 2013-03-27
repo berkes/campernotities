@@ -15,13 +15,12 @@ Feature: Use labels
        | Dogs Allowed     |       |
        | Amount of places | 1-10  |
 
-  @wip
   Scenario: Filter on the map
-    Given 12 Campings
+    Given 1 Campings
     And a camping named "Bij Ons" with the following labels:
        | name             | value | 
        | Dogs Allowed     | nil   | 
     When I visit the search page
-    And I check "Dogs Allowed"
+    And I check "Dogs Allowed" search filter
     And I click "Refine"
     Then I should see only the camping "Bij Ons"
