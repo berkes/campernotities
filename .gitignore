@@ -15,5 +15,8 @@
 /tmp
 .sass-cache/*
 
+# ignore test-output
+rerun.txt
+
 # Ignore uploaded files
 /public/system/*
