@@ -31,4 +31,27 @@ describe Label do
       Label.values.should_not include(flag)
     end
   end
+
+  context "#options" do
+    before do
+      FactoryGirl.create(:label, :name => "Amount of places", :value => "10-20")
+      FactoryGirl.create(:label, :name => "Amount of places", :value => "20-50")
+
+      @label = Label.find_by_name("Amount of places")
+    end
+
+    it "should group all values" do
+      @label.options.should =~ ["20-50", "10-20"]
+    end
+
+    it "should have only uniqe values" do
+      FactoryGirl.create(:label, :name => "Amount of places", :value => "20-50")
+      @label.options.length.should == 2
+    end
+
+    it "should be sorted" do
+      FactoryGirl.create(:label, :name => "Amount of places", :value => "0-10")
+      @label.options[0].should eq "0-10"
+    end
+  end
 end
