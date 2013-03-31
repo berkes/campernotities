@@ -9,6 +9,7 @@ describe SearchController do
     it { should assign_to(:search) }
     it { should assign_to(:campings) }
     it { should assign_to(:labels).with_kind_of(Array) }
+    it { should assign_to(:selects).with_kind_of(Array) }
     it { should respond_with(:success) }
     it { should render_template(:index) }
   end
@@ -21,7 +22,7 @@ describe SearchController do
 
   describe "labels" do
     it 'should be the top 10' do
-      Label.should_receive(:top).with(10).and_return([])
+      Label.should_receive(:top).with(10).twice.and_return([])
       get :index
     end
   end
