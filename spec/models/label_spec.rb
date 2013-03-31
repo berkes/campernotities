@@ -22,15 +22,27 @@ describe Label do
     end
   end
 
-  context "#selects" do
-    it "should return only labels with values" do
-      flag   = FactoryGirl.create(:label, :name => "Dogs Allowed", :value => nil)
-      select = FactoryGirl.create(:label, :name => "Amount of places", :value => "10-20")
+  context "scopes for search" do
+    before do
+      @flag   = FactoryGirl.create(:label, :name => "Dogs Allowed", :value => nil)
+      @select = FactoryGirl.create(:label, :name => "Amount of places", :value => "10-20")
+    end
 
-      Label.selects.should include(select)
-      Label.selects.should_not include(flag)
+    context "#flags" do
+      it "should return only labels without values" do
+        Label.flags.should include(@flag)
+        Label.flags.should_not include(@select)
+      end
+    end
+
+    context "#selects" do
+      it "should return only labels with values" do
+        Label.selects.should include(@select)
+        Label.selects.should_not include(@flag)
+      end
     end
   end
+      
 
   context "#options" do
     before do

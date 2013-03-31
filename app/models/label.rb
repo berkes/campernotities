@@ -7,6 +7,7 @@ class Label < ActiveRecord::Base
   validates_length_of :name, :within => 2..60
 
   scope :selects, where("value")
+  scope :flags,   where("value" => nil)
 
   def self.top amount
     find(:all, :select => '*, count(*) AS count', :group => 'name', :order => 'count DESC', :limit => amount)

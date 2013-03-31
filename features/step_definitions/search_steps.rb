@@ -1,5 +1,5 @@
 When /^I check "(.*?)" search filter$/ do |filter|
-  within ".filters" do
+  within ".filters .flags" do
     check filter
   end
 end

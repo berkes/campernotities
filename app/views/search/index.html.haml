@@ -2,7 +2,7 @@
   .filters.four.columns
     = form_for(@search, :url => search_path, :html => { :method => :get }) do |f|
       .row.flags
-        - @labels.each do |label|
+        - @flags.each do |label|
           = label_tag("label_#{label.id}", label.name )
           = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
       .row.selects
