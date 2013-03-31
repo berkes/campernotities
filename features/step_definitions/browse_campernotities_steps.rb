@@ -8,22 +8,15 @@ Given /^(\d+) Campings$/ do |amount|
   end
 end
 
-Given /^a camping with the following labels:$/ do |label_table|
+Given /^a camping( named "(.*?)")? with the following labels:$/ do |is_named, name, label_table|
   labels = []
   label_table.hashes.each do |row|
-    row['value'] = nil if row['value'] == 'nil'
+    row['value'] = '' if row['value'] == 'nil'
     labels << FactoryGirl.create(:label, :name => row['name'], :value => row['value'])
   end
-  FactoryGirl.create(:camping, :labels => labels)
-end
-
-Given /^a camping named "(.*?)" with the following labels:$/ do |name, label_table|
-  labels = []
-  label_table.hashes.each do |row|
-    row['value'] = nil if row['value'] == 'nil'
-    labels << FactoryGirl.create(:label, :name => row['name'], :value => row['value'])
-  end
-  FactoryGirl.create(:camping, :labels => labels, :name => name)
+  params = {:labels => labels}
+  params[:name] = name if is_named
+  FactoryGirl.create(:camping, params)
 end
 
 Given /^"(.*?)" have (\d+) campings$/ do |name, amount|

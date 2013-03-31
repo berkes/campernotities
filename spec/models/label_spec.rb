@@ -24,7 +24,7 @@ describe Label do
 
   context "scopes for search" do
     before do
-      @flag   = FactoryGirl.create(:label, :name => "Dogs Allowed", :value => nil)
+      @flag   = FactoryGirl.create(:label, :name => "Dogs Allowed", :value => '')
       @select = FactoryGirl.create(:label, :name => "Amount of places", :value => "10-20")
     end
 
