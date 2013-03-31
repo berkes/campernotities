@@ -21,4 +21,14 @@ describe Label do
       top.map{|l| l.name}.should_not include "Label-1"
     end
   end
+
+  context "#values" do
+    it "should return only labels with values" do
+      flag   = FactoryGirl.create(:label, :name => "Dogs Allowed", :value => nil)
+      select = FactoryGirl.create(:label, :name => "Amount of places", :value => "10-20")
+
+      Label.values.should include(select)
+      Label.values.should_not include(flag)
+    end
+  end
 end
