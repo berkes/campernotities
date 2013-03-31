@@ -25,6 +25,7 @@ Feature: Use labels
     And I check "Dogs Allowed" search filter
     And I click "Refine"
     Then I should see only the camping "Bij Ons"
+    And "Dogs Allowed" should be checked
 
   Scenario: Filter by values
     Given 1 Campings
@@ -35,3 +36,4 @@ Feature: Use labels
     And I select "10-20" from "Amount of places"
     And I click "Refine"
     Then I should see only the camping "Bij Ons"
+    And in "Amount of places", "10-20" should be selected

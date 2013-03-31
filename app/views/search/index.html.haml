@@ -8,7 +8,7 @@
       .row.selects
         - @selects.each do |select|
           = label_tag("label_#{select.id}", select.name)
-          = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.include?(select.name)), :include_blank => true, :name => "search[labels_value_eq_any][]")
+          = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
       = f.submit "Refine"
 - if @campings.size > 0
   .row.results
