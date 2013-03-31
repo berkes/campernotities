@@ -10,7 +10,7 @@ FactoryGirl.define do
     f.name "Beautifull Green"
     f.association :author, :factory => :admin_user
     f.images {
-      6.times.map {|i| FactoryGirl.create(:image) }
+      2.times.map {|i| FactoryGirl.create(:image) }
     }
 
     factory :camping_with_geo do
@@ -24,6 +24,11 @@ FactoryGirl.define do
     f.email
     f.password "password"
     f.password_confirmation "password"
+  end
+
+  factory :label do |f|
+    f.name "Amount of places"
+    f.value "1-10"
   end
 
   factory :image do |f|

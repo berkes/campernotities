@@ -43,6 +43,21 @@ When /^I mark the image for removal$/ do
   check "Remove image"
 end
 
+When /^I create a label "([^"]*)"$/ do |name|
+  click_link "Add New Label"
+  within(".labels") do
+    fill_in "Name", :with => name
+  end
+end
+
+When /^I create a label "([^"]*)" with "([^"]*)"$/ do |name, value|
+  click_link "Add New Label"
+  within(".labels") do
+    fill_in "Name", :with => name
+    fill_in "Value", :with => value
+  end
+end
+
 Then /^I can attach new images$/ do
   click_link "Add New Image"
   click_link "Add New Image"

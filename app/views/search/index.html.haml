@@ -1,0 +1,24 @@
+.row
+  %h1 Search
+  .filters.four.columns
+    %h2
+      %small Advanced
+    = form_for(@search, :url => search_path, :html => { :method => :get }) do |f|
+      .row.flags
+        - @flags.each do |label|
+          .six.columns
+            = label_tag("label_#{label.id}", label.name, :class => "right" )
+          .six.columns
+            = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
+      .row.selects
+        - @selects.each do |select|
+          .six.columns
+            = label_tag("label_#{select.id}", select.name, :class => "right inline")
+          .six.columns
+            = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
+      = f.submit "Refine"
+  .eight.columns
+    - if @campings.size > 0
+      .row.results
+        = render @campings
+

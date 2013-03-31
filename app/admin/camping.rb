@@ -14,6 +14,13 @@ ActiveAdmin.register Camping do
       end
     end
 
+    f.inputs "Labels" do
+      f.has_many :labels do |label|
+        label.input :name
+        label.input :value, :hint => "Leave empty for simple labels, such as 'Dogs Allowed'"
+      end
+    end
+
     f.inputs "Address" do
       f.input :latitude
       f.input :longitude
@@ -36,6 +43,9 @@ ActiveAdmin.register Camping do
       row :description
       row :image do
         render :partial => "images/thumb", :collection => camping.images
+      end
+      row :labels do
+        render :partial => "labels/label", :collection => camping.labels
       end
       row :created_at
       row :updated_at
