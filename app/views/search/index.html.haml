@@ -1,10 +1,14 @@
 .row
   .filters.four.columns
     = form_for(@search, :url => search_path, :html => { :method => :get }) do |f|
-      .row
+      .row.flags
         - @labels.each do |label|
           = label_tag("label_#{label.id}", label.name )
           = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
+      .row.selects
+        - @selects.each do |select|
+          = label_tag("label_#{select.id}", select.name)
+          = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.include?(select.name)), :include_blank => true, :name => "search[labels_value_eq_any][]")
       = f.submit "Refine"
 - if @campings.size > 0
   .row.results

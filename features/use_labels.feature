@@ -25,3 +25,13 @@ Feature: Use labels
     And I check "Dogs Allowed" search filter
     And I click "Refine"
     Then I should see only the camping "Bij Ons"
+
+  Scenario: Filter by values
+    Given 1 Campings
+    And a camping named "Bij Ons" with the following labels:
+       | name             | value | 
+       | Amount of places | 10-20 | 
+    When I visit the search page
+    And I select "10-20" from "Amount of places"
+    And I click "Refine"
+    Then I should see only the camping "Bij Ons"
