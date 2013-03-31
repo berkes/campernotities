@@ -3,6 +3,6 @@ class SearchController < ApplicationController
     @search = Camping.search(params[:search])
     @campings = @search.all
     @labels  = Label.top(10)
-    @selects = Label.values.top(10)
+    @selects = Label.selects.top(10)
   end
 end

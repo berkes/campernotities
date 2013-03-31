@@ -22,13 +22,13 @@ describe Label do
     end
   end
 
-  context "#values" do
+  context "#selects" do
     it "should return only labels with values" do
       flag   = FactoryGirl.create(:label, :name => "Dogs Allowed", :value => nil)
       select = FactoryGirl.create(:label, :name => "Amount of places", :value => "10-20")
 
-      Label.values.should include(select)
-      Label.values.should_not include(flag)
+      Label.selects.should include(select)
+      Label.selects.should_not include(flag)
     end
   end
 
