@@ -16,9 +16,11 @@ Feature: Titles
   Scenario: Subpage name in the title
     Given I am on the homepage
     When I follow the "Authors" menu-link
-    Then I should see "Discover Campings by Author" in the title
+    Then I should see "Discover Campings by Author" in the titles
     When I follow the "Locations" menu-link
-    Then I should see "Discover Campings by Location" in the title
+    Then I should see "Discover Campings by Location" in the titles
+    When I follow the "Search" menu-link
+    Then I should see "Search for Campings" in the titles
 
   Scenario: Camping name in the title
     Given a camping named "Beautiful Green"
