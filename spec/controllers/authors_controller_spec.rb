@@ -4,6 +4,12 @@ describe AuthorsController do
   let(:author) { mock_model(AdminUser).as_null_object }
 
   context "#index" do
+    before do
+      get :index
+    end
+
+    it { should assign_to(:title) }
+
     it 'loads the authors' do
       AdminUser.stub(:find).and_return([author])
       AdminUser.should_receive(:find).with :all

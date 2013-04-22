@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   def index
     @authors = AdminUser.find(:all)
+    @title   = "Discover Campings by Author"
   end
 
   def home

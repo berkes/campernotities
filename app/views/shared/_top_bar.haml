@@ -7,16 +7,14 @@
     %li.toggle-topbar
       %a{:href => "#"}
   %section
-    %ul
+    %ul.left
       %li.divider
       %li
-        %a{:href => authors_path} 
-          Authors
-    %ul
+        %a{:href => authors_path} Authors
       %li.divider
       %li
-        %a{:href => maps_path}
-          Map
+        %a{:href => maps_path} Locations
+      %li.divider
     %ul.right
       %li.divider
       - if admin_user_signed_in?
