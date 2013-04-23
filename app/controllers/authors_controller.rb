@@ -11,5 +11,6 @@ class AuthorsController < ApplicationController
   def show
     @author   = AdminUser.find(params[:id])
     @campings = @author.campings
+    @title    = "Discover Campings by #{@author.name}"
   end
 end

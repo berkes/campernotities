@@ -1,2 +1,5 @@
 .row
+  %h1.title
+    Discover Campings by
+    = @author.name
   = render :partial => "campings/camping", :collection => @campings

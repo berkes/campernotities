@@ -28,3 +28,9 @@ Feature: Titles
        | Authors   | Discover Campings by Author   |
        | Locations | Discover Campings by Location |
        | Search    | Search for Campings           |
+
+  Scenario: Author page title
+    Given there is a user with name "Bèr"
+    When I visit the camping listing for "Bèr"
+    Then I should see "Discover Campings by Bèr" in the titles
+

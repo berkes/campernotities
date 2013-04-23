@@ -31,5 +31,6 @@ describe AuthorsController do
 
     it { should assign_to(:author).with(author) }
     it { should assign_to(:campings).with(author.campings) }
+    it { should assign_to(:title) }
   end
 end
