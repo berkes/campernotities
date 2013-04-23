@@ -16,6 +16,8 @@ class Camping < ActiveRecord::Base
   validates :longitude, :numericality => { :greater_than_or_equal_to => -180, :less_than_or_equal_to => 180 }, :allow_blank => true
 
   default_scope order("created_at")
+  # Scope for anything with geocodes. Check for latitude-only, since we never have a record with only longitude.
+  scope :geocoded, where("latitude <> 'NULL'")
 
   # Scope for "top" campings
   def self.top(amount)
