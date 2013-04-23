@@ -13,16 +13,18 @@ Feature: Titles
     When I visit the homepage
     Then I should see "Share and Discover those Special Campings" in the title
 
-  Scenario: Subpage name in the title
-    Given I am on the homepage
-    When I follow the "Authors" menu-link
-    Then I should see "Discover Campings by Author" in the titles
-    When I follow the "Locations" menu-link
-    Then I should see "Discover Campings by Location" in the titles
-    When I follow the "Search" menu-link
-    Then I should see "Search for Campings" in the titles
-
   Scenario: Camping name in the title
     Given a camping named "Beautiful Green"
     When I visit the camping page
     Then I should see "Beautiful Green - ShareShire" in the title
+
+  Scenario Outline:
+    Given I am on the homepage
+    When I follow the "<link>" menu-link
+    Then I should see "<title>" in the titles
+
+    Examples:
+       | link      | title                         |
+       | Authors   | Discover Campings by Author   |
+       | Locations | Discover Campings by Location |
+       | Search    | Search for Campings           |
