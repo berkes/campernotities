@@ -1,8 +1,8 @@
 var map = { 
   init: null,
-  gmap: null, 
-  addMarker: null,
-  markers: [], 
+  gmap: null,
+  addCamping: null,
+  markers: [],
   setCenter: null,
   center: null,
   setup: null,
@@ -59,8 +59,10 @@ map.init = function (position) {
   });
 }
 
-map.addMarker = function (latitude, longitude, title) {
+map.addCamping = function (latitude, longitude, title) {
   map.markers.unshift({coords: new google.maps.LatLng(latitude, longitude), title: title});
+
+
 }
 
 map.setCenter = function (position) {
