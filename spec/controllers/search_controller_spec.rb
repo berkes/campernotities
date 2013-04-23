@@ -8,6 +8,7 @@ describe SearchController do
 
     it { should assign_to(:search) }
     it { should assign_to(:campings) }
+    it { should assign_to(:title) }
     it { should assign_to(:flags).with_kind_of(Array) }
     it { should assign_to(:selects).with_kind_of(Array) }
     it { should respond_with(:success) }

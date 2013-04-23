@@ -1,22 +1,22 @@
 %nav.top-bar
   %ul
-    %li.name
-      %h1
-        %a{:href => root_path, :title => "To homepage"}
-          Camper
+    %li
+      %a.name{:href => root_path, :title => "To homepage"}
+        = image_tag "logo.png", :alt => "ShareShire"
     %li.toggle-topbar
       %a{:href => "#"}
   %section
-    %ul
+    %ul.left
       %li.divider
       %li
-        %a{:href => authors_path} 
-          Authors
-    %ul
+        %a{:href => authors_path} Authors
       %li.divider
       %li
-        %a{:href => maps_path}
-          Map
+        %a{:href => maps_path} Locations
+      %li.divider
+      %li
+        %a{:href => search_path} Search
+      %li.divider
     %ul.right
       %li.divider
       - if admin_user_signed_in?
