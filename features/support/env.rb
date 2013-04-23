@@ -1,15 +1,23 @@
 require 'rubygems'
 require 'spork'
-require 'cucumber/rails'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
 
+  require "rails/application"
+  #Spork.trap_method(Rails::Application, :reload_routes!) # Rails 3.0
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!) # Rails 3.1
+
+  require Rails.root.join("config", "environment.rb")
+
+  require 'cucumber/rails'
+
   # Include factory girl factories from rspec
-  require File.join(Rails.root, "spec", "fixtures", "factories.rb")
+  require File.join(Rails.root, "spec", "fixtures", "factories.rb") 
 
   # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
   # order to ease the transition to Capybara we set the default here. If you'd
@@ -32,7 +40,7 @@ Spork.prefork do
   # 2) Set the value below to true. Beware that doing this globally is not
   # recommended as it will mask a lot of errors for you!
   #
-  # ActionController::Base.allow_rescue = false
+  ActionController::Base.allow_rescue = false
 
   # Remove/comment out the lines below if your app doesn't have a database.
   # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
@@ -60,8 +68,8 @@ Spork.prefork do
   # Possible values are :truncation and :transaction
   # The :transaction strategy is faster, but might give you threading problems.
   # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-
   Cucumber::Rails::Database.javascript_strategy = :truncation
+
 end
 
 Spork.each_run do

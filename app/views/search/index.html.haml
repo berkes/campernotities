@@ -4,7 +4,7 @@
   %h2
     %small Refine
   = form_for(@search, :url => search_path, :html => { :method => :get }) do |f|
-    .row
+    .row.filters
       .six.columns.flags
         .row
           - @flags.each do |label|

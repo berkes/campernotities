@@ -66,7 +66,7 @@ When /^I click the 'Show me campings by' dropdown$/ do
 end
 
 When /^I click the logo in the top\-menu$/ do
-  find(".top-bar .name h1 a").click
+  find_link("ShareShire").click
 end
 
 Then /^I should be on the homepage$/ do

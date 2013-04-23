@@ -33,7 +33,7 @@ Feature: Place campings on a Map
   Scenario: Follow the map menu-link
     Given 15 geocoded Campings
     And I am on the homepage
-    When I follow the "Map" menu-link
+    When I follow the "Locations" menu-link
     Then I should see an interactive Google Map
     And I should see all the campings on the map
 
@@ -47,6 +47,6 @@ Feature: Place campings on a Map
   Scenario: Allow application to access my location
     Given 15 geocoded Campings
     And I am on the homepage
-    When I follow the "Map" menu-link
+    When I follow the "Locations" menu-link
     Then it should ask me if I allow to share my current location
     And it should center the map on my current location
