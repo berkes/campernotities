@@ -5,48 +5,31 @@ describe AuthorsController do
 
   context "#index" do
     before do
+      AdminUser.stub(:find).and_return([author])
       get :index
     end
 
     it { should assign_to(:title) }
-
-    it 'loads the authors' do
-      AdminUser.stub(:find).and_return([author])
-      AdminUser.should_receive(:find).with :all
-      get :index
-
-      expect(assigns(:authors)).to eq [author]
-    end
+    it { should assign_to(:authors).with [author] }
   end
 
   context "#home" do
-    it "loads the authors" do
+    before do
       AdminUser.stub(:find).and_return([author])
-      AdminUser.should_receive(:find).with :all
       get :home
-
-      expect(assigns(:authors)).to eq [author]
     end
+
+    it { should assign_to(:authors).with [author] }
   end
 
   context "#show" do
     before(:each) do
       AdminUser.stub(:find).and_return(author)
       author.stub(:campings).and_return []
-    end
-
-    it 'loads the user' do
-      AdminUser.should_receive(:find).with author.id.to_s
       get :show, :id => author.id
-
-      expect(assigns(:author)).to eq author
     end
 
-    it 'loads the campings for this user' do
-      author.should_receive(:campings)
-      get :show, :id => author.id
-
-      expect(assigns(:campings)).to eq []
-    end
+    it { should assign_to(:author).with(author) }
+    it { should assign_to(:campings).with(author.campings) }
   end
 end
