@@ -51,18 +51,23 @@ map.init = function (position) {
   });
 
   map.markers.forEach (function (marker){
-    new google.maps.Marker({
+    var gmarker = new google.maps.Marker({
       position: marker.coords,
       map:      map.gmap,
       title:    marker.title
     });
+    var gInfoWindow = new google.maps.InfoWindow({
+      content: marker.description
+    });
+    google.maps.event.addListener(gmarker, 'click', function() {
+      gInfoWindow.open(map.gmap, gmarker);
+    });
+
   });
 }
 
-map.addCamping = function (latitude, longitude, title) {
-  map.markers.unshift({coords: new google.maps.LatLng(latitude, longitude), title: title});
-
-
+map.addCamping = function (latitude, longitude, title, description) {
+  map.markers.unshift({coords: new google.maps.LatLng(latitude, longitude), title: title, description: description});
 }
 
 map.setCenter = function (position) {

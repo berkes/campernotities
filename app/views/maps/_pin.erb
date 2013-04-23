@@ -1,1 +1,4 @@
-$(document).ready(map.addCamping(<%= pin.latitude %>, <%= pin.longitude %>, "<%= pin.name %>"))
+var contentString = '<h2><%= link_to pin.name, pin %></h2>' +
+'<div class="more"><%= link_to "read more", pin %></div>';
+
+$(document).ready(map.addCamping(<%= pin.latitude %>, <%= pin.longitude %>, "<%= pin.name %>", contentString))
