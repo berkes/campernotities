@@ -1,9 +1,8 @@
 %nav.top-bar
   %ul
-    %li.name
-      %h1
-        %a{:href => root_path, :title => "To homepage"}
-          ShareShire
+    %li
+      %a.name{:href => root_path, :title => "To homepage"}
+        = image_tag "logo.png", :alt => "ShareShire"
     %li.toggle-topbar
       %a{:href => "#"}
   %section
