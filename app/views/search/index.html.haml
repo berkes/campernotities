@@ -1,25 +1,29 @@
 .row
   %h1.title
     = title
-  .filters.four.columns
-    %h2
-      %small Advanced
-    = form_for(@search, :url => search_path, :html => { :method => :get }) do |f|
-      .row.flags
-        - @flags.each do |label|
-          .six.columns
-            = label_tag("label_#{label.id}", label.name, :class => "right" )
-          .six.columns
-            = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
-      .row.selects
-        - @selects.each do |select|
-          .six.columns
-            = label_tag("label_#{select.id}", select.name, :class => "right inline")
-          .six.columns
-            = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
-      = f.submit "Refine"
-  .eight.columns
-    - if @campings.size > 0
-      .row.results
-        = render @campings
+  %h2
+    %small Refine
+  = form_for(@search, :url => search_path, :html => { :method => :get }) do |f|
+    .row
+      .six.columns.flags
+        .row
+          - @flags.each do |label|
+            .six.columns
+              = label_tag("label_#{label.id}", label.name, :class => "right" )
+            .six.columns
+              = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
+      .six.columns.selects
+        .row
+          - @selects.each do |select|
+            .six.columns
+              = label_tag("label_#{select.id}", select.name, :class => "right inline")
+            .six.columns
+              = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
+    .row
+      .two.columns.centered
+        = f.submit "Refine", :class => "button large"
+.row
+  - if @campings.size > 0
+    .row.results
+      = render @campings
 
