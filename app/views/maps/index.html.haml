@@ -2,9 +2,8 @@
   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyC1GdwD4o0-PSz_5afcPM5_P_OsKZGf6Fg&sensor=true"
 
 - content_for :javascript_body do
-  = render :partial => "pin", :collection => @pins
   $(document).ready(function() {                        |
-    map.setup(); |
+    map.setup();                                        |
   });                                                   |
 
 .row
@@ -12,5 +11,5 @@
     = title
   #map_canvas.twelve.columns
 
-.row
-  = render @pins
+#campings.row
+  Please wait ....

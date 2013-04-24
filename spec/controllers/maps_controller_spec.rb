@@ -6,31 +6,44 @@ describe MapsController do
       @campings = FactoryGirl.create_list(:camping_with_geo, 5)
     end
 
-    before do
-      get :index
+    context "HTML" do
+      before do
+        get :index
+      end
+      it { should assign_to(:title) }
+      it { should respond_with(:success) }
     end
-    it { should assign_to(:title) }
-    it { should respond_with(:success) }
-    it { should assign_to(:pins).with(Camping.top(50).geocoded) }
 
     context "JSON" do
-      before do
-        get :index, :format => :json
-      end
-      it { should respond_with(:success) }
-      it 'should have the pins as JSON' do
-        response.body.should eq Camping.top(50).geocoded.to_json
-      end
-    end
+      context "no bounds" do
+        before do
+          get :index, :format => :json
+        end
+        it { should respond_with(:success) }
 
-    context "bounded" do
-      before do
-        get :index, :bounding => "51.332168,4.468309,52.350285,7.214891"
+        it 'should have the pins as JSON' do
+          response.body.should eq [].to_json
+        end
       end
-      it { should respond_with(:success) }
-      it "should assign @pins with items within a bounding box" do
-        campings = Camping.within_bounding_box([51.332168, 4.468309, 52.350285, 7.214891]).top(50)
-        should assign_to(:pins).with(campings)
+
+      context "bounded" do
+        before do
+          get :index, :bounding => "51.332168,4.468309,52.350285,7.214891", :format => :json
+        end
+        it { should respond_with(:success) }
+        it { should assign_to(:campings) }
+
+        context "included HTML" do
+          render_views
+          it "should include an infowindow version" do
+            should render_template("campings/_infowindow")
+            ActiveSupport::JSON.decode(response.body).first["infowindow"].should_not be_empty
+          end
+          it "should include a listing version" do
+            should render_template("campings/_camping")
+            ActiveSupport::JSON.decode(response.body).first["listing"].should_not be_empty
+          end
+        end
       end
     end
   end

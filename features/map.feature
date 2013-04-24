@@ -30,12 +30,12 @@ Feature: Place campings on a Map
     Then I should not see a Google Map
     And I should not see a table with a geo property
 
+  @javascript
   Scenario: Follow the map menu-link
     Given 15 geocoded Campings
-    And I am on the homepage
-    When I follow the "Locations" menu-link
+    When I visit the map page with latitude=20 and longitude=20
     Then I should see an interactive Google Map
-    And I should see all the campings on the map
+    And I should see all the campings
 
   @javascript
   Scenario: Follow link with latitude and longitude parameters
