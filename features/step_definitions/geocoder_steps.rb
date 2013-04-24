@@ -17,8 +17,8 @@ When /^I fill in the form with latitude "(.*?)" and longitude "(.*?)"$/ do |lati
   fill_in :camping_longitude,    :with => longitude
 end
 
-When /^I visit the map page with latitude=(\d+) and longitude=(\d+)$/ do |latitude, longitude|
-  visit maps_path({ :latitude => latitude, :longitude => longitude, :test => true })
+When /^I visit the map page$/ do
+  visit maps_path({:test => true })
 end
 
 Then /^the camping should have a latitude and longitude$/ do
@@ -36,6 +36,10 @@ end
 
 Then /^I should see an interactive Google Map$/ do
   page.should have_selector("#map_canvas")
+  #maps.js has this hardcoded:
+  #var position = { coords: { latitude: '51.71154', longitude: '6.05034' }};
+  page.evaluate_script('map.gmap.center.lat()').to_f.should be_within(1).of(51.0)
+  page.evaluate_script('map.gmap.center.lng()').to_f.should be_within(1).of(6.0)
 end
 
 Then /^I should see the maps location at "(.*?)", "(.*?)"$/ do |latitude, longitude|
@@ -59,11 +63,3 @@ Then /^it should ask me if I allow to share my current location$/ do
   page.should have_xpath "//script[contains(.,'map.setup()')]"
 end
 
-Then /^it should center the map on latitude "(.*?)" and longitude "(.*?)"$/ do |latitude, longitude|
-  page.should have_content "latitude: #{latitude} longitude: #{longitude}"
-end
-
-Then /^it should center the map on my current location$/ do
-  visit maps_path({:latitude => 20, :longitude => 20, :test => true})
-  step %{it should center the map on latitude "20" and longitude "20"}
-end

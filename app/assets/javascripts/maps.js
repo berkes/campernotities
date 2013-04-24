@@ -10,26 +10,13 @@ var map = {
 }
 
 map.setup = function () {
-  if (urlParam('latitude') && urlParam('longitude')) {
-    var latitude = urlParam('latitude');
-    var longitude = urlParam('longitude');
-    if (urlParam('test')) { //testing extension, bail out and render the center instead of initializing map.
-      $("#map_canvas").html("latitude: "+ latitude +" longitude: "+ longitude);
-      map.fetchCampings();
-    }
-    else {
-      var position = {coords: { latitude: latitude, longitude: longitude }};
-      map.setCenter(position);
-    }
+  //!urlParam("test") testing extension to allow for testing.
+  if (Modernizr.geolocation && !urlParam('test')) {
+    navigator.geolocation.getCurrentPosition(map.init)
   }
   else {
-    if (Modernizr.geolocation) {
-      navigator.geolocation.getCurrentPosition(map.init)
-    }
-    else {
-      var position = { coords: { latitude: '51.71154', longitude: '6.05034' }};
-      map.init(position);
-    }
+    var position = { coords: { latitude: '51.71154', longitude: '6.05034' }};
+    map.init(position);
   }
 }
 
