@@ -15,6 +15,7 @@ map.setup = function () {
     var longitude = urlParam('longitude');
     if (urlParam('test')) { //testing extension, bail out and render the center instead of initializing map.
       $("#map_canvas").html("latitude: "+ latitude +" longitude: "+ longitude);
+      map.fetchCampings();
     }
     else {
       var position = {coords: { latitude: latitude, longitude: longitude }};
@@ -30,7 +31,6 @@ map.setup = function () {
       map.init(position);
     }
   }
-  map.fetchCampings();
 }
 
 map.init = function (position) {
@@ -49,6 +49,7 @@ map.init = function (position) {
     title: "You are here!",
     icon: new google.maps.MarkerImage("https://chart.googleapis.com/chart?chst=d_map_pin_icon_withshadow&chld=home|FFFF00")
   });
+  google.maps.event.addListener(map.gmap, 'idle', map.fetchCampings)
 }
 
 map.addCamping = function (camping) {
@@ -72,13 +73,16 @@ map.setCenter = function (position) {
 }
 
 map.fetchCampings = function () {
+  $("#campings").fadeTo('slow', 0.4)
   $.ajax({
     dataType: "json",
-    url: "maps.json?bounding=45.446465,-4.935988,53.944621,17.036668",
+    url: "maps.json",
+    data: {bounding: map.gmap.getBounds().toUrlValue() },
   }).done(function (data) {
     $("#campings").empty();
     data.forEach(function (camping) {
       map.addCamping(camping);
     });
+    $("#campings").fadeTo('slow', 1)
   });
 }
