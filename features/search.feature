@@ -32,7 +32,7 @@ Feature: Search
        | Dogs Allowed     | nil   | 
     When I visit the map page
     And I check "Dogs Allowed" search filter
-    And I click "Refine"
+    And I click "Search"
     Then I should see only the camping "Bij Ons"
     And "Dogs Allowed" should be checked
 
@@ -44,7 +44,7 @@ Feature: Search
        | Amount of places | 10-20 | 
     When I visit the map page
     And I select "10-20" from "Amount of places"
-    And I click "Refine"
+    And I click "Search"
     Then I should see only the camping "Bij Ons"
     And in "Amount of places", "10-20" should be selected
 
