@@ -53,7 +53,6 @@ Then /^I should (not\s)?see a table with a geo property$/ do |toggle|
 end
 
 Then /^I should see all the campings$/ do
-  save_page
   Camping.geocoded.top(50).each do |camping|
     step %Q{I should see camping "#{camping.name}"}
   end
