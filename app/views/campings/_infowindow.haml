@@ -1,0 +1,10 @@
+%h2.small
+  = link_to camping.name, camping
+.row
+  .four.columns
+    %a.th{:href => camping_path(camping)}
+      = image_tag camping.main_image.url(:thumb)
+  .eight.columns
+    = camping.description
+.more
+  = link_to "read more", camping

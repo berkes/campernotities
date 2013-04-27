@@ -2,15 +2,35 @@
   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyC1GdwD4o0-PSz_5afcPM5_P_OsKZGf6Fg&sensor=true"
 
 - content_for :javascript_body do
-  = render :partial => "pin", :collection => @pins
   $(document).ready(function() {                        |
-    map.setup(); |
+    map.setup();                                        |
   });                                                   |
 
 .row
   %h1.title
     = title
+  %h2
+    %small Refine
+  = form_for(@search, :url => maps_path(:format => :json), :html => { :method => :get }) do |f|
+    .row.filters
+      .six.columns.flags
+        .row
+          - @flags.each do |label|
+            .six.columns
+              = label_tag("label_#{label.id}", label.name, :class => "right" )
+            .six.columns
+              = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
+      .six.columns.selects
+        .row
+          - @selects.each do |select|
+            .six.columns
+              = label_tag("label_#{select.id}", select.name, :class => "right inline")
+            .six.columns
+              = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
+    .row
+      .two.columns.centered
+        = f.submit "Refine", :class => "button large"
   #map_canvas.twelve.columns
 
-.row
-  = render @pins
+#campings.row
+  Please wait ....

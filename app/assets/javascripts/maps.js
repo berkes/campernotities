@@ -1,43 +1,27 @@
 var map = { 
   init: null,
-  gmap: null, 
-  addMarker: null,
-  markers: [], 
+  gmap: null,
+  addCamping: null,
+  markers: [],
   setCenter: null,
   center: null,
   setup: null,
-  fallback: null
+  fetchCampings: null
 }
 
 map.setup = function () {
-  if (urlParam('latitude') && urlParam('longitude')) {
-    var latitude = urlParam('latitude');
-    var longitude = urlParam('longitude');
-    if (urlParam('test')) { //testing extension, bail out and render the center instead of initializing map.
-      $("#map_canvas").html("latitude: "+ latitude +" longitude: "+ longitude);
-      return null;
-    }
-    else {
-      var position = {coords: { latitude: latitude, longitude: longitude }};
-      map.setCenter(position);
-    }
+  map.setCenter({ coords: { latitude: '51.71154', longitude: '6.05034' } })
+
+  //!urlParam("test") testing extension to allow for testing.
+  if (Modernizr.geolocation && !urlParam('test')) {
+    navigator.geolocation.getCurrentPosition(map.setCenter)
   }
-  else {
-    if (Modernizr.geolocation) {
-      navigator.geolocation.getCurrentPosition(map.init)
-    }
-    else {
-      var position = { coords: { latitude: '48.6908333333', longitude: '9.14055555556' }};
-      map.init(position);
-    }
-  }
+  map.init();
 }
 
-map.init = function (position) {
-  map.setCenter(position);
-
+map.init = function () {
   var mapOptions = {
-    zoom: 9,
+    zoom: 6,
     center: map.center,
     mapTypeId: google.maps.MapTypeId.HYBRID
   }
@@ -49,20 +33,65 @@ map.init = function (position) {
     title: "You are here!",
     icon: new google.maps.MarkerImage("https://chart.googleapis.com/chart?chst=d_map_pin_icon_withshadow&chld=home|FFFF00")
   });
-
-  map.markers.forEach (function (marker){
-    new google.maps.Marker({
-      position: marker.coords,
-      map:      map.gmap,
-      title:    marker.title
-    });
-  });
+  google.maps.event.addListener(map.gmap, 'idle', map.fetchCampings)
 }
 
-map.addMarker = function (latitude, longitude, title) {
-  map.markers.unshift({coords: new google.maps.LatLng(latitude, longitude), title: title});
+map.addCamping = function (camping) {
+  var coords = new google.maps.LatLng(camping.latitude, camping.longitude);
+  var gmarker = new google.maps.Marker({
+      position: coords,
+      map:      map.gmap,
+      title:    camping.title
+  });
+  //Add to internal memory for deleting
+  map.markers.push(gmarker)
+
+  var gInfoWindow = new google.maps.InfoWindow({
+      content:  camping.infowindow
+  });
+  google.maps.event.addListener(gmarker, 'click', function() {
+    gInfoWindow.open(map.gmap, gmarker);
+  });
+  $("#campings").append(camping.listing);
 }
 
 map.setCenter = function (position) {
   map.center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  if (map.gmap) {
+    map.gmap.setCenter(map.center);
+  }
 }
+
+map.fetchCampings = function (data) {
+  if (data) {
+    data = data + "&bounding=" + map.gmap.getBounds().toUrlValue();
+  }
+  else {
+    data = "bounding=" + map.gmap.getBounds().toUrlValue();
+  }
+
+  $("#campings").fadeTo('slow', 0.4)
+  $.ajax({
+    dataType: "json",
+    url: "maps.json",
+    data: data,
+  }).done(function (data) {
+    $("#campings").empty();
+    //empty markers on map.
+    map.markers.forEach(function (marker) {
+      marker.setMap(null);
+    });
+
+    data.forEach(function (camping) {
+      map.addCamping(camping);
+    });
+    $("#campings").fadeTo('slow', 1)
+  });
+}
+
+$(document).ready(function () {
+  $("#camping_search").submit(function(e) {
+    e.preventDefault();
+    map.fetchCampings($(this).serialize());
+  });
+});

@@ -11,6 +11,9 @@ class Camping < ActiveRecord::Base
   accepts_nested_attributes_for :images, :allow_destroy => true
   validate :should_have_images
 
+  geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
+
   validate :lat_lon_combination
   validates :latitude, :numericality  => { :greater_than_or_equal_to => -90, :less_than_or_equal_to  => 90 }, :allow_blank  => true
   validates :longitude, :numericality => { :greater_than_or_equal_to => -180, :less_than_or_equal_to => 180 }, :allow_blank => true

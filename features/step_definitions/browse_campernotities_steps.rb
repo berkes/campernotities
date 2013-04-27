@@ -34,10 +34,6 @@ When /^I (?:visit|am on) the homepage$/ do
   visit root_path
 end
 
-When /^I (?:visit|am on) the search page$/ do
-  visit search_path
-end
-
 When /^I am on the Authors page$/ do
   visit authors_path
 end

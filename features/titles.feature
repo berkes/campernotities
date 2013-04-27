@@ -27,7 +27,6 @@ Feature: Titles
        | link      | title                         |
        | Authors   | Discover Campings by Author   |
        | Locations | Discover Campings by Location |
-       | Search    | Search for Campings           |
 
   Scenario: Author page title
     Given there is a user with name "Bèr"
