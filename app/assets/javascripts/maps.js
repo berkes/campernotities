@@ -10,19 +10,16 @@ var map = {
 }
 
 map.setup = function () {
+  map.setCenter({ coords: { latitude: '51.71154', longitude: '6.05034' } })
+
   //!urlParam("test") testing extension to allow for testing.
   if (Modernizr.geolocation && !urlParam('test')) {
-    navigator.geolocation.getCurrentPosition(map.init)
+    navigator.geolocation.getCurrentPosition(map.setCenter)
   }
-  else {
-    var position = { coords: { latitude: '51.71154', longitude: '6.05034' }};
-    map.init(position);
-  }
+  map.init();
 }
 
-map.init = function (position) {
-  map.setCenter(position);
-
+map.init = function () {
   var mapOptions = {
     zoom: 6,
     center: map.center,
@@ -60,6 +57,9 @@ map.addCamping = function (camping) {
 
 map.setCenter = function (position) {
   map.center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  if (map.gmap) {
+    map.gmap.setCenter(map.center);
+  }
 }
 
 map.fetchCampings = function (data) {
