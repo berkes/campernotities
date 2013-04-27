@@ -46,6 +46,9 @@ map.addCamping = function (camping) {
       map:      map.gmap,
       title:    camping.title
   });
+  //Add to internal memory for deleting
+  map.markers.push(gmarker)
+
   var gInfoWindow = new google.maps.InfoWindow({
       content:  camping.infowindow
   });
@@ -59,17 +62,36 @@ map.setCenter = function (position) {
   map.center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 }
 
-map.fetchCampings = function () {
+map.fetchCampings = function (data) {
+  if (data) {
+    data = data + "&bounding=" + map.gmap.getBounds().toUrlValue();
+  }
+  else {
+    data = "bounding=" + map.gmap.getBounds().toUrlValue();
+  }
+
   $("#campings").fadeTo('slow', 0.4)
   $.ajax({
     dataType: "json",
     url: "maps.json",
-    data: {bounding: map.gmap.getBounds().toUrlValue() },
+    data: data,
   }).done(function (data) {
     $("#campings").empty();
+    //empty markers on map.
+    map.markers.forEach(function (marker) {
+      marker.setMap(null);
+    });
+
     data.forEach(function (camping) {
       map.addCamping(camping);
     });
     $("#campings").fadeTo('slow', 1)
   });
 }
+
+$(document).ready(function () {
+  $("#camping_search").submit(function(e) {
+    e.preventDefault();
+    map.fetchCampings($(this).serialize());
+  });
+});

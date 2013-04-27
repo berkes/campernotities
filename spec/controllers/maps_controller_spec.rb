@@ -11,7 +11,16 @@ describe MapsController do
         get :index
       end
       it { should assign_to(:title) }
+      it { should assign_to(:search) }
+      it { should assign_to(:flags).with_kind_of(Array) }
+      it { should assign_to(:selects).with_kind_of(Array) }
       it { should respond_with(:success) }
+      describe "labels" do
+        it 'should be the top 10' do
+          Label.should_receive(:top).with(10).twice.and_return([])
+          get :index
+        end
+      end
     end
 
     context "JSON" do
@@ -24,14 +33,29 @@ describe MapsController do
         it 'should have the pins as JSON' do
           response.body.should eq [].to_json
         end
+
+
       end
 
       context "bounded" do
         before do
-          get :index, :bounding => "51.332168,4.468309,52.350285,7.214891", :format => :json
+          @bounding = "51.332168,4.468309,52.350285,7.214891"
+          get :index, :format => :json, :bounding => @bounding
         end
         it { should respond_with(:success) }
         it { should assign_to(:campings) }
+
+        it 'should use metasearch to determine the campings' do
+          # Create two campings
+          FactoryGirl.create(:camping, :labels => [FactoryGirl.create(:label, :name => "Dogs Allowed", :value => nil)])
+          FactoryGirl.create(:camping)
+
+          # Set a search that matches only one of the created campings
+          search_params = {"labels_name_contains_any"=>["Dogs Allowed"]}
+
+          get(:index, :format => :json, :bounding => @bounding, :search => search_params )
+          assigns(:campings).length.should eq 1
+        end
 
         context "included HTML" do
           render_views

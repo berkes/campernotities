@@ -1,11 +1,14 @@
 class MapsController < ApplicationController
   def index
     @title = "Discover Campings by Location"
+    @search = Camping.search(params[:search])
+    @flags   = Label.flags.top(10)
+    @selects = Label.selects.top(10)
     @campings = []
 
     unless params[:bounding].nil?
       box = params[:bounding].split(',').map{|bearing| bearing.to_f}
-      Camping.within_bounding_box(box).top(50).each do |camping|
+      Camping.within_bounding_box(box).top(50).search(params[:search]).each do |camping|
         rendered = camping.attributes
         rendered["listing"] = render_to_string(
           :file => "campings/_camping",
