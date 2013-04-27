@@ -2,6 +2,10 @@ Given /^no campings on the campings listing$/ do
   Camping.find(:all).each {|c| c.destroy}
 end
 
+Given /^a camping with the following parameters:$/ do |table|
+  FactoryGirl.create(:camping, table.rows_hash)
+end
+
 Given /^User has a camping with name "(.*?)"$/ do |name|
   FactoryGirl.create(:camping, :author => the_user)
 end

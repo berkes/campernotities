@@ -4,6 +4,25 @@ Feature: Search
   As a user
   I want to search and filter campings
 
+  @javascript
+  Scenario: Search in title
+    Given 1 Campings
+    And a camping named "Bij Ons"
+    When I visit the map page
+    And I fill in search with "ons"
+    And I click "Search"
+    Then I should see only the camping "Bij Ons"
+
+  @javascript
+  Scenario: Search in description
+    Given 1 Campings
+    And a camping with the following parameters:
+      | name | Bij Ons |
+      | description | cute and small |
+    When I visit the map page
+    And I fill in search with "small"
+    And I click "Search"
+    Then I should see only the camping "Bij Ons"
 
   @javascript
   Scenario: Filter on the map
