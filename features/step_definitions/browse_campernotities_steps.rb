@@ -110,8 +110,8 @@ Then /^I should see all images as large image$/ do
 end
 
 Then /^I should see only the camping "(.*?)"$/ do |title|
-  page.assert_selector(:xpath, "//article/h1", :count => 1)
   page.should have_content(title)
+  page.all(:xpath, "//article/h1").count.should be 1
 end
 
 Then /^I should see thumbnails for the "(.*)" most recent campings for the User$/ do |number|
