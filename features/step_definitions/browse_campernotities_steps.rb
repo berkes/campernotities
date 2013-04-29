@@ -114,6 +114,11 @@ Then /^I should see only the camping "(.*?)"$/ do |title|
   page.all(:xpath, "//article/h1").count.should be 1
 end
 
+Then /^I should see the top (\d+) Campings$/ do |number|
+  asserted_links = Camping.top(number).map {|c| camping_path(c) }
+  all("article h1 a").map{|a| a[:href] }.should eq asserted_links
+end
+
 Then /^I should see thumbnails for the "(.*)" most recent campings for the User$/ do |number|
   assert_selector(:xpath, "//section/h2", :text => the_user.name)
   assert_selector("a.th img", :count => number)

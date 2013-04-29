@@ -20,6 +20,7 @@ describe AuthorsController do
     end
 
     it { should assign_to(:authors).with [author] }
+    it { should assign_to(:campings) }
   end
 
   context "#show" do

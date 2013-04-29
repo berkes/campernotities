@@ -6,6 +6,7 @@ class AuthorsController < ApplicationController
 
   def home
     @authors = AdminUser.find(:all)
+    @campings = Camping.top(10)
   end
 
   def show
