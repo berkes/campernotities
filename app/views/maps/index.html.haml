@@ -10,30 +10,29 @@
   %h1.title
     = title
   = form_for(@search, :url => maps_path(:format => :json), :html => { :method => :get }) do |f|
-    .one.columns
-      = label_tag("search_contains", "Search", :class => "right")
-    .eleven.columns
-      = text_field_tag("search_contains", nil, :placeholder => "Enter search terms...", :name => "search[name_or_description_contains]")
-    .row.filters
-      %fieldset
-        %legend Refine
-        .six.columns.flags
-          .row
-            - @flags.each do |label|
-              .six.columns
-                = label_tag("label_#{label.id}", label.name, :class => "right" )
-              .six.columns
-                = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
-        .six.columns.selects
-          .row
-            - @selects.each do |select|
-              .six.columns
-                = label_tag("label_#{select.id}", select.name, :class => "right inline")
-              .six.columns
-                = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
+    .row.collapse
+      .ten.columns
+        = text_field_tag("search_contains", nil, :placeholder => "Enter search terms...", :name => "search[name_or_description_contains]")
+      .two.columns
+        = f.submit "Search", :class => "button expand postfix"
     .row
-      .two.columns.centered
-        = f.submit "Search", :class => "button large"
+      .twelve.columns.filters
+        %fieldset.collapsible
+          %legend Refine
+          .six.columns.flags
+            .row
+              - @flags.each do |label|
+                .six.columns
+                  = label_tag("label_#{label.id}", label.name, :class => "right inline" )
+                .six.columns
+                  = check_box_tag("label_#{label.id}", label.name, [f.object.labels_name_eq_any].flatten.include?(label.name), :name => "search[labels_name_eq_any][]")
+          .six.columns.selects
+            .row
+              - @selects.each do |select|
+                .six.columns
+                  = label_tag("label_#{select.id}", select.name, :class => "right inline")
+                .six.columns
+                  = select_tag("label_#{select.id}", options_for_select(select.options, [f.object.labels_value_eq_any].flatten.first), :include_blank => true, :name => "search[labels_value_eq_any][]")
   #map_canvas.twelve.columns
 
 #campings.row

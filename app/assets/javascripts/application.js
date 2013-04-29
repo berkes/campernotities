@@ -20,3 +20,20 @@ urlParam = function(name) {
   }
   return results[1] || null;
 }
+
+$(document).ready(function() {
+  $("fieldset.collapsible legend").click(function() {
+    collapse($(this));
+  });
+
+  collapse = function(legend) {
+    if (legend.parent().children().length == 2) {
+      legend.parent().find("div").toggle();
+    }
+    else {
+      legend.parent().wrapInner("<div>");
+      legend.appendTo(legend.parent().parent());
+      legend.parent().find("div").toggle();
+    }
+  }
+});

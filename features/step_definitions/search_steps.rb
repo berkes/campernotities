@@ -1,5 +1,5 @@
 When /^I fill in search with "(.*?)"$/ do |keyword|
-  fill_in "Search", :with => keyword
+  fill_in :search_contains, :with => keyword
 end
 
 When /^I check "(.*?)" search filter$/ do |filter|
