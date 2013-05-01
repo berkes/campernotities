@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 set :application, "CN_campernotities"
 set :repository,  "https://github.com/berkes/campernotities"
 
