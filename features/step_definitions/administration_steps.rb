@@ -6,6 +6,11 @@ Given /^a camping with the following parameters:$/ do |table|
   FactoryGirl.create(:camping, table.rows_hash)
 end
 
+Given /^I have a Camping with a description with (no|simple|complex) markup$/ do |markup|
+  description = File.open(Rails.root.join("spec", "fixtures", "description_#{markup}.markdown")).read
+  FactoryGirl.create(:camping, :description => description)
+end
+
 Given /^User has a camping with name "(.*?)"$/ do |name|
   FactoryGirl.create(:camping, :author => the_user)
 end

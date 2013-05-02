@@ -77,3 +77,6 @@ gem "meta_search", ">= 1.1.0.pre"
 
 # Images
 gem "paperclip", "~> 3.0"
+
+# Editing and filters
+gem "rdiscount", "~> 2.0.7"

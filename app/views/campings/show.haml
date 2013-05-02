@@ -7,7 +7,7 @@
         = image_tag image.image.url(:large), :class => "large", :data => { :thumb => image.image.url(:thumb) }
     .row
       .six.columns.description
-        = @camping.description
+        != m @camping.description
       .six.columns
         - unless @camping.latitude.blank?
           = map_tag({:latitude => @camping.latitude, :longitude => @camping.longitude, :width => 485, :height => 300 })

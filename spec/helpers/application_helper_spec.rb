@@ -12,4 +12,10 @@ describe ApplicationHelper do
       title.should eq "Share and Discover those Special Campings"
     end
   end
+
+  describe "#m" do
+    it 'should create HTML' do
+      helper.m("foo **bar** baz").strip.should eq "<p>foo <strong>bar</strong> baz</p>"
+    end
+  end
 end

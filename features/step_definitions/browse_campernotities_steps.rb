@@ -133,6 +133,21 @@ Then /^I should see the description "(.*?)"$/ do |description|
   page.find(".description").should have_content(description)
 end
 
+Then /^I should see no markup$/ do
+  page.should_not have_selector(:xpath, "//*[@class='description']/p/*")
+end
+
+Then /^I should see breaks and paragraphs$/ do
+  page.all(".description>p").length.should eq 2
+  page.should have_selector(".description>p>br")
+end
+
+Then /^I should see complex HTML$/ do
+  %w{h1 h2 h3 p br strong em a img ul li blockquote}.each do |tag|
+    page.should have_selector(".description #{tag}")
+  end
+end
+
 Then /^I should see a link to "(.*?)"$/ do |link_title|
   page.should have_link(link_title)
 end
