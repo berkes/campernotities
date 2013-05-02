@@ -9,9 +9,9 @@ set :deploy_to, "/var/www/#{application}"
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "MNC_monica"                          # Your HTTP server, Apache/etc
-role :app, "MNC_monica"                          # This may be the same as your `Web` server
-role :db,  "MNC_monica", :primary => true # This is where Rails migrations will run
+role :web, "LSC_luscious"                          # Your HTTP server, Apache/etc
+role :app, "LSC_luscious"                          # This may be the same as your `Web` server
+role :db,  "LSC_luscious", :primary => true # This is where Rails migrations will run
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
