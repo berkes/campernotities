@@ -17,7 +17,7 @@
   var intID = setInterval(changeImg, 6000);
   /* image rotator */
   function changeImg(){
-    $('.stretcher').animate({opacity: 0}, 'slow', function() {
+    $('#stretcher').animate({opacity: 0}, 'slow', function() {
       $(this).css('background-image', 'url('+preloadArr[currImg++%preloadArr.length].src+')');
     }).animate({opacity: 1});
   }
