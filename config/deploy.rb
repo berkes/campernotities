@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require File.join(File.dirname(__FILE__), "capistrano_database_yml.rb")
 
 set :application, "CN_campernotities"
 set :repository,  "https://github.com/berkes/campernotities"
