@@ -19,6 +19,7 @@ group :assets do
   gem 'zurb-foundation', '~> 3.2.3'
 
   gem 'uglifier', '>= 1.0.3'
+
 end
 
 # Test group
@@ -39,11 +40,18 @@ group :development do
   gem "capybara"
 
   gem "rspec-rails", ">= 2.0.1"
+
+  gem "capistrano"
 end
 
 group :development, :test do
   gem "debugger"
   gem "spork-rails"
+end
+
+group :production do
+  gem 'execjs'
+  gem 'therubyracer'
 end
 
 # To use ActiveModel has_secure_password
