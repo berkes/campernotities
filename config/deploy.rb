@@ -2,6 +2,7 @@ require "bundler/capistrano"
 
 set :application, "CN_campernotities"
 set :repository,  "https://github.com/berkes/campernotities"
+set :branch, "develop"
 
 set :deploy_to, "/var/www/#{application}"
 
