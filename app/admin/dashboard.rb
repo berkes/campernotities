@@ -23,7 +23,10 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "Info" do
-          para "Welcome to ActiveAdmin."
+          para "Welcome to ShareShire admin area"
+          para "Here you can add, remove or edit your campings"
+          para "A more solid access- and permission system is being made. But for now, all who can access these pages are trusted people. So please don't abuse that trust. Thanks."
+          para "For questions: ber@webschuur.com. Feel free to ask anything; input on what can, should or might be improved is most welcome!"
         end
       end
     end
