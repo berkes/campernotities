@@ -18,6 +18,11 @@ class Camping < ActiveRecord::Base
   validates :latitude, :numericality  => { :greater_than_or_equal_to => -90, :less_than_or_equal_to  => 90 }, :allow_blank  => true
   validates :longitude, :numericality => { :greater_than_or_equal_to => -180, :less_than_or_equal_to => 180 }, :allow_blank => true
 
+  validates :website,
+    :length => { :maximum => 255 },
+    :format => { :with => URI::regexp(%w(http https)) }
+  before_validation :ensure_website_has_protocol
+
   default_scope order("created_at")
   # Scope for anything with geocodes. Check for latitude-only, since we never have a record with only longitude.
   scope :geocoded, where("latitude <> 'NULL'")
@@ -32,12 +37,18 @@ class Camping < ActiveRecord::Base
     images.first.image
   end
 
+  # Validation callbacks
   def should_have_images
     errors.add(:base, "At least one image is required") if images.blank?
   end
   def lat_lon_combination
     if (latitude.blank? ^ longitude.blank?)
       errors.add(:base, "When providing a location, both Latitude and Longitude should be provided")
+    end
+  end
+  def ensure_website_has_protocol
+    unless website.nil?
+      self.website = "http://#{website}" if URI.parse(website).scheme.nil?
     end
   end
 end

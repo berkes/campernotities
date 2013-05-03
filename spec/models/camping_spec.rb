@@ -11,7 +11,6 @@ describe Camping do
   it { should have_many(:images) }
   it { should accept_nested_attributes_for(:images) }
 
-  it { should allow_mass_assignment_of(:website) }
   context "without images" do
     it "should be invalid" do
       camping = Camping.new()
@@ -97,6 +96,24 @@ describe Camping do
       @camping.longitude = ""
       @camping.latitude = ""
       @camping.should be_valid
+    end
+  end
+
+  describe "#website" do
+    it { should allow_mass_assignment_of(:website) }
+
+    it 'should ensure website has a length of at most 255' do
+      camping = Camping.new(:website => "x" * 256)
+      camping.valid?
+      camping.errors[:website].first.should match /is too long/
+    end
+    it 'should prepend http to urls without it' do
+      camping = Camping.new(:website => "example.com")
+      camping.valid?
+      camping.website.should eq "http://example.com"
+    end
+    %w{example.com http://example.com https://example.com}.each do |valid_value|
+      it { should allow_value(valid_value).for(:website) }
     end
   end
 end
