@@ -17,5 +17,8 @@ describe ApplicationHelper do
     it 'should create HTML' do
       helper.m("foo **bar** baz").strip.should eq "<p>foo <strong>bar</strong> baz</p>"
     end
+    it 'should allow nil' do
+      expect { helper.m(nil) }.to_not raise_error
+    end
   end
 end

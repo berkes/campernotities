@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def m(text)
-    RDiscount.new(text, :filter_html).to_html
+    RDiscount.new(text.to_s, :filter_html).to_html
   end
 end
