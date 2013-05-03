@@ -152,6 +152,10 @@ Then /^I should see a link to "(.*?)"$/ do |link_title|
   page.should have_link(link_title)
 end
 
+Then /^I should see a link named "(.*?)" to "(.*?)"$/ do |name, link|
+  page.should have_link(name, :href => link)
+end
+
 Then /^I should see my name in the menu$/ do
   page.find(".top-bar").should have_content(the_user.name)
 end

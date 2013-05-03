@@ -11,6 +11,7 @@ describe Camping do
   it { should have_many(:images) }
   it { should accept_nested_attributes_for(:images) }
 
+  it { should allow_mass_assignment_of(:website) }
   context "without images" do
     it "should be invalid" do
       camping = Camping.new()
