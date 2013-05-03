@@ -5,6 +5,7 @@ ActiveAdmin.register Camping do
     f.inputs "Information" do
       f.input :name
       f.input :description
+      f.input :website
     end
 
     f.inputs "Images" do

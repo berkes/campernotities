@@ -19,6 +19,12 @@
                   Geo
                 %td.value
                   = "#{@camping.latitude}, #{@camping.longitude}"
+            - unless @camping.website.blank?
+              %tr.website
+                %td.name
+                  Website
+                %td.value
+                  = link_to "#{@camping.name} website", @camping.website
 
             - @camping.labels.each do |label|
               %tr.filter-label
