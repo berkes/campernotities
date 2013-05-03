@@ -48,6 +48,10 @@ When /^I update the name to "(.*?)"$/ do |name|
   step %{I click "Update Camping"}
 end
 
+When /^I fill in website with "(.*?)"$/ do |website|
+  fill_in :camping_website, :with => website
+end
+
 When /^I mark the image for removal$/ do
   check "Remove image"
 end
