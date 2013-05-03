@@ -20,7 +20,8 @@ class Camping < ActiveRecord::Base
 
   validates :website,
     :length => { :maximum => 255 },
-    :format => { :with => URI::regexp(%w(http https)) }
+    :format => { :with => URI::regexp(%w(http https)) },
+    :allow_nil => true
   before_validation :ensure_website_has_protocol
 
   default_scope order("created_at")

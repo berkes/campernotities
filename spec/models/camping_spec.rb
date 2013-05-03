@@ -101,6 +101,7 @@ describe Camping do
 
   describe "#website" do
     it { should allow_mass_assignment_of(:website) }
+    it { should allow_value(nil).for(:website) }
 
     it 'should ensure website has a length of at most 255' do
       camping = Camping.new(:website => "x" * 256)
