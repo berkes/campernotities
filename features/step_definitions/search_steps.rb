@@ -2,6 +2,10 @@ When /^I fill in search with "(.*?)"$/ do |keyword|
   fill_in :search_contains, :with => keyword
 end
 
+When /^I uncollapse "Refine"$/ do
+  find(:xpath, %{//fieldset[@class="collapsible collapsed"]/legend[contains(text(), "Refine")]}).click()
+end
+
 When /^I check "(.*?)" search filter$/ do |filter|
   within ".filters .flags" do
     check filter

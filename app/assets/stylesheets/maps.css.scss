@@ -5,3 +5,14 @@
 #map_canvas {
   height: 600px;
 }
+
+.collapsible {
+  cursor: pointer;
+
+  legend:after {
+    content: " ⊖  ";
+  }
+  legend.collapsed:after {
+    content: " ⊕ ";
+  }
+}
