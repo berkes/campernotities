@@ -19,7 +19,6 @@ group :assets do
   gem 'zurb-foundation', '~> 3.2.3'
 
   gem 'uglifier', '>= 1.0.3'
-
 end
 
 # Test group
@@ -42,6 +41,8 @@ group :development do
   gem "rspec-rails", ">= 2.0.1"
 
   gem "capistrano"
+
+  gem "spring"
 end
 
 group :development, :test do

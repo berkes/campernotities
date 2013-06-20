@@ -13,6 +13,20 @@
 //= require_tree .
 //= require foundation
 
+(function($) {
+  $.fn.collapse = function() {
+    this.toggleClass("collapsed")
+    if (this.parent().children().length == 2) {
+      this.parent().find("div").toggle();
+    }
+    else {
+      this.parent().wrapInner("<div>");
+      this.appendTo(this.parent().parent());
+      this.parent().find("div").toggle();
+    }
+  }
+}(jQuery));
+
 urlParam = function(name) {
   var results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
   if (!results) {
@@ -22,18 +36,6 @@ urlParam = function(name) {
 }
 
 $(document).ready(function() {
-  $("fieldset.collapsible legend").click(function() {
-    collapse($(this));
-  });
-
-  collapse = function(legend) {
-    if (legend.parent().children().length == 2) {
-      legend.parent().find("div").toggle();
-    }
-    else {
-      legend.parent().wrapInner("<div>");
-      legend.appendTo(legend.parent().parent());
-      legend.parent().find("div").toggle();
-    }
-  }
+  $("fieldset.collapsible legend").click(function(){$(this).collapse()});
+  $("fieldset.collapsible.collapsed legend").collapse();
 });

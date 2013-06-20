@@ -245,6 +245,7 @@ GEM
     spork-rails (3.2.1)
       rails (>= 3.0.0, < 3.3.0)
       spork (>= 1.0rc0)
+    spring (0.0.9)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -302,6 +303,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda
   spork-rails
+  spring
   therubyracer
   uglifier (>= 1.0.3)
   zurb-foundation (~> 3.2.3)
