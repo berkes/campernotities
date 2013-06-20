@@ -52,8 +52,8 @@ Then /^I should (not\s)?see a table with a geo property$/ do |toggle|
   page.send(operator, have_selector("table tr.geo"))
 end
 
-Then /^I should see all the campings$/ do
-  Camping.geocoded.top(50).each do |camping|
+Then /^I should see all (\d+) campings$/ do |amount|
+  Camping.geocoded.top(amount.to_i).each do |camping|
     step %Q{I should see camping "#{camping.name}"}
   end
 end

@@ -32,7 +32,7 @@ Feature: Place campings on a Map
 
   @javascript
   Scenario: Follow the map menu-link
-    Given 15 geocoded Campings
+    Given 2 geocoded Campings
     When I visit the map page
     Then I should see an interactive Google Map
-    And I should see all the campings
+    And I should see all 2 campings

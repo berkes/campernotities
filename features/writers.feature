@@ -15,7 +15,7 @@ Feature: Writers
     Then I should see a list of writers containing "Anna en Bèr"
 
   Scenario: Writers overview has recent campings for authors
-    Given the User has "10" Campings
+    Given the User has "6" Campings
     When I am on the Authors page
     Then I should see thumbnails for the "5" most recent campings for the User
 
@@ -25,7 +25,7 @@ Feature: Writers
     Then I should see a camping "Beautifull Green"
 
   Scenario: View the thumbnails
-    Given "Bèr en Anna" have 10 campings
+    Given "Bèr en Anna" have 2 campings
     When I visit the camping listing for "Bèr en Anna"
     Then I should see between one and 5 thumbnails for each camping
 
