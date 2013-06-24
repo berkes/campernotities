@@ -3,6 +3,7 @@ class Image < ActiveRecord::Base
 
   # Paperclip
   has_attached_file :image,
+    :default_url => "/assets/missing.jpg",
     :styles => { 
       :thumb => "150x150>",
       :large => "1000x"

@@ -9,9 +9,6 @@ FactoryGirl.define do
   factory :camping do |f|
     f.name "Beautifull Green"
     f.association :author, :factory => :admin_user
-    f.images {
-      2.times.map {|i| FactoryGirl.create(:image) }
-    }
 
     factory :camping_with_geo do
       f.latitude 51.77802459999999

@@ -12,11 +12,11 @@ describe Camping do
   it { should accept_nested_attributes_for(:images) }
 
   context "without images" do
-    it "should be invalid" do
-      camping = Camping.new()
-      camping.images = []
-      camping.should be_invalid
-      camping.should have(1).errors_on(:base)
+    it "should return a fallback image" do
+      FactoryGirl.create(:camping)
+      camping = Camping.first
+      camping.images.first.should be_a Image
+      camping.images.first.image.url.should match /missing/
     end
   end
   describe "#top" do

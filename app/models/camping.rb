@@ -1,6 +1,8 @@
 class Camping < ActiveRecord::Base
   attr_accessible :description, :name, :images_attributes, :labels_attributes, :latitude, :longitude, :website
 
+  after_find :set_fallback_images
+
   belongs_to :author, :class_name => AdminUser
   validates_presence_of :author
 
@@ -9,7 +11,6 @@ class Camping < ActiveRecord::Base
 
   has_many :images
   accepts_nested_attributes_for :images, :allow_destroy => true
-  validate :should_have_images
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
@@ -39,9 +40,6 @@ class Camping < ActiveRecord::Base
   end
 
   # Validation callbacks
-  def should_have_images
-    errors.add(:base, "At least one image is required") if images.blank?
-  end
   def lat_lon_combination
     if (latitude.blank? ^ longitude.blank?)
       errors.add(:base, "When providing a location, both Latitude and Longitude should be provided")
@@ -51,5 +49,10 @@ class Camping < ActiveRecord::Base
     unless website.nil?
       self.website = "http://#{website}" if URI.parse(website).scheme.nil?
     end
+  end
+
+  private
+  def set_fallback_images
+    self.images << Image.new if images.count == 0
   end
 end
