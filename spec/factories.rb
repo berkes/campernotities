@@ -29,7 +29,7 @@ FactoryGirl.define do
   end
 
   factory :image do |f|
-    f.image File.open(File.join(File.expand_path(File.dirname(__FILE__)), "images", "brown_small.jpg"))
+    f.image File.open(File.join(File.expand_path(File.dirname(__FILE__)), "fixtures", "images", "brown_small.jpg"))
   end
 end
 

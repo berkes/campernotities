@@ -42,7 +42,7 @@ group :development do
 
   gem "capistrano"
 
-  gem "spring"
+  gem "zeus"
 end
 
 group :development, :test do
