@@ -6,6 +6,15 @@ FactoryGirl.define do
     "person#{n}@hogwards.edu.uk"
   end
 
+  factory :label do |f|
+    f.name "Amount of places"
+    f.value "1-10"
+  end
+
+  factory :image do |f|
+    f.image File.open(File.join(File.expand_path(File.dirname(__FILE__)), "fixtures", "images", "brown_small.jpg"))
+  end
+
   factory :camping do |f|
     f.name "Beautifull Green"
     f.association :author, :factory => :admin_user
@@ -13,6 +22,10 @@ FactoryGirl.define do
     factory :camping_with_geo do
       f.latitude 51.77802459999999
       f.longitude 5.9757149
+    end
+
+    factory :camping_with_images do
+      f.images { FactoryGirl.create_list(:image, 2) }
     end
   end
 
@@ -22,14 +35,4 @@ FactoryGirl.define do
     f.password "password"
     f.password_confirmation "password"
   end
-
-  factory :label do |f|
-    f.name "Amount of places"
-    f.value "1-10"
-  end
-
-  factory :image do |f|
-    f.image File.open(File.join(File.expand_path(File.dirname(__FILE__)), "fixtures", "images", "brown_small.jpg"))
-  end
 end
-

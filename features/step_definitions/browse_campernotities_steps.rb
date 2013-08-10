@@ -25,9 +25,7 @@ end
 
 Given /^"(.*?)" have (\d+) campings$/ do |name, amount|
   author = FactoryGirl.create(:author, :name => name)
-  amount.to_i.times do
-    FactoryGirl.create(:camping, :author => author)
-  end
+  FactoryGirl.create_list(:camping_with_images, amount.to_i, :author => author)
 end
 
 When /^I (?:visit|am on) the homepage$/ do

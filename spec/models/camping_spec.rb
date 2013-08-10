@@ -13,10 +13,8 @@ describe Camping do
 
   context "without images" do
     it "should return a fallback image" do
-      FactoryGirl.create(:camping)
-      camping = Camping.first
+      camping = FactoryGirl.create(:camping)
       camping.images.first.should be_a Image
-      camping.images.first.image.url.should match /missing/
     end
   end
   describe "#top" do

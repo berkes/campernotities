@@ -53,6 +53,10 @@ Then /^I should see the image "(.*?)" on the attributes page$/ do |image|
   page.should have_xpath("//img[contains(@src, '#{image}')]")
 end
 
+Then /^I should see the default image on the attributes page$/ do
+  page.should have_xpath("//img[contains(@src, 'missing.jpg')]")
+end
+
 Then /^I should not see the image in attributes on the attributes page$/ do
   page.should_not have_xpath('//*[@class="attributes_table camping"]//img')
 end

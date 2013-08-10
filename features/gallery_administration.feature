@@ -23,7 +23,7 @@ Feature: Gallery Administration
     When I visit the update page for "Beautifull Green"
     And I mark the image for removal
     And I click "Update Camping"
-    Then I should not see the image in attributes on the attributes page
+    Then I should see the default image on the attributes page
 
   Scenario: Update an image in a Camping
     Given I have a camping with the image "green_small.jpg"
@@ -31,8 +31,3 @@ Feature: Gallery Administration
     And I update the image to "brown_small.jpg"
     And I click "Update Camping"
     Then I should see the image "brown_small.jpg" on the attributes page
-
-  Scenario: Attach at least one image to a camping
-    When I visit the 'create new camping' form
-    And I click "Create Camping"
-    Then I should see an error telling "At least one image is required"
