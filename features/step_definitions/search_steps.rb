@@ -18,6 +18,11 @@ When /^I select "(.*?)" from "(.*?)"$/ do |selection, selectfield|
   end
 end
 
+When /^I click the Search-button$/ do
+  sleep 1
+  click_button "Search"
+end
+
 Then /^"(.*?)" should be checked$/ do |filter|
   within ".filters .flags" do
     should have_checked_field(filter)
@@ -29,3 +34,4 @@ Then /^in "(.*?)", "(.*?)" should be selected$/ do |selectfield, selection|
     should have_select(selectfield, :selected => selection)
   end
 end
+

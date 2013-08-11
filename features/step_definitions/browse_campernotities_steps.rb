@@ -108,7 +108,7 @@ Then /^I should see all images as large image$/ do
 end
 
 Then /^I should see only the camping "(.*?)"$/ do |title|
-  page.should have_content(title)
+  page.find("article h1").should have_content(title)
   page.all(:xpath, "//article/h1").count.should be 1
 end
 

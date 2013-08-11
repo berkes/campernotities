@@ -63,11 +63,13 @@ map.setCenter = function (position) {
 }
 
 map.fetchCampings = function (data) {
+  bounds_as_url_value = map.gmap.getBounds().toUrlValue();
+
   if (data) {
-    data = data + "&bounding=" + map.gmap.getBounds().toUrlValue();
+    data = data + "&bounding=" + bounds_as_url_value;
   }
   else {
-    data = "bounding=" + map.gmap.getBounds().toUrlValue();
+    data = "bounding=" + bounds_as_url_value;
   }
 
   $("#campings").fadeTo('slow', 0.4)

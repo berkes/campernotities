@@ -10,7 +10,7 @@ Feature: Search
     And a camping named "Bij Ons"
     When I visit the map page
     And I fill in search with "ons"
-    And I click "Search"
+    And I click the Search-button
     Then I should see only the camping "Bij Ons"
 
   @javascript
@@ -21,7 +21,7 @@ Feature: Search
       | description | cute and small |
     When I visit the map page
     And I fill in search with "small"
-    And I click "Search"
+    And I click the Search-button
     Then I should see only the camping "Bij Ons"
 
   @javascript
@@ -33,7 +33,7 @@ Feature: Search
     When I visit the map page
     And I uncollapse "Refine"
     And I check "Dogs Allowed" search filter
-    And I click "Search"
+    And I click the Search-button
     Then I should see only the camping "Bij Ons"
     And "Dogs Allowed" should be checked
 
@@ -46,6 +46,6 @@ Feature: Search
     When I visit the map page
     And I uncollapse "Refine"
     And I select "10-20" from "Amount of places"
-    And I click "Search"
+    And I click the Search-button
     Then I should see only the camping "Bij Ons"
     And in "Amount of places", "10-20" should be selected

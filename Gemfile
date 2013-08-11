@@ -25,6 +25,7 @@ end
 group :test do
   gem "cucumber-rails", :require => false
   gem "capybara"
+  gem 'poltergeist'
 
   gem "database_cleaner"
   gem "rspec-rails", ">= 2.0.1"
