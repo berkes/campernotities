@@ -10,6 +10,7 @@ describe Camping do
 
   it { should have_many(:images) }
   it { should accept_nested_attributes_for(:images) }
+  it { should allow_mass_assignment_of(:images_attributes) }
 
   context "without images" do
     it "should return a fallback image" do
