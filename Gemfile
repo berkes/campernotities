@@ -37,12 +37,6 @@ group :test do
 end
 
 group :development do 
-  gem "capybara"
-
-  gem "rspec-rails", ">= 2.0.1"
-
-  gem "capistrano"
-
   gem "zeus"
 end
 
@@ -64,9 +58,6 @@ end
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
