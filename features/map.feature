@@ -13,7 +13,6 @@ Feature: Place campings on a Map
     Then the form should have no errors
     And the camping should have a latitude and longitude
 
-  @wip
   Scenario: Show the latitude and longitude as a pin on a map
     Given a camping with latitude latitude "51.77802459999999" and longitude "5.9757149" exists
     When I visit the camping page

@@ -152,7 +152,10 @@ end
 
 Then /^it should link to the search page, centered at "(.*?)", "(.*?)"$/ do |latitude, longitude|
   location = CGI.escape("#{BigDecimal.new(latitude.to_f,10)},#{BigDecimal.new(longitude.to_f,10)}")
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   page.find('a.map')[:href].should eq "/maps?center=#{location}"
 end
 
