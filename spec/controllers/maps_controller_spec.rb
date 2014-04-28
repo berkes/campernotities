@@ -34,7 +34,7 @@ describe MapsController do
 
       context 'centered' do
         it  'should pass the center params to the map generator' do
-          get :index, :center => '13.37,3.14'
+          get :index, :center => '13.37,3.14'  # maps?center=13.37,3.14
           assigns(:center)[:lat].should eq '13.37'
           assigns(:center)[:lon].should eq '3.14'
         end

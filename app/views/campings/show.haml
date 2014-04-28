@@ -9,8 +9,7 @@
       .six.columns.description
         != m @camping.description
       .six.columns
-        - unless @camping.latitude.blank?
-          = map_tag({:latitude => @camping.latitude, :longitude => @camping.longitude, :width => 485, :height => 300 })
+        = map_tag(@camping.latitude, @camping.longitude) unless @camping.latitude.blank?
         %table.twelve.properties
           %tbody
             - unless @camping.latitude.blank?

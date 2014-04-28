@@ -18,6 +18,7 @@ Feature: Place campings on a Map
     When I visit the camping page
     Then I should see a Google Map
     And I should see the maps location at "51.77802459999999", "5.9757149"
+    And it should link to the search page, centered at "51.77802459999999", "5.9757149"
 
   Scenario: Show the latitude and longitude in a properties-table
     Given a camping with latitude latitude "51.77802459999999" and longitude "5.9757149" exists
