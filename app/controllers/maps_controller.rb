@@ -1,6 +1,7 @@
 class MapsController < ApplicationController
   def index
     @title = "Discover Campings by Location"
+    @center = center_params
     @search = Camping.search(params[:search])
     @flags   = Label.flags.top(10)
     @selects = Label.selects.top(10)
@@ -29,5 +30,11 @@ class MapsController < ApplicationController
       format.html
       format.json { render :json => @campings }
     end
+  end
+
+  private
+  def center_params
+    lat, lon = params[:center].try(:split, ',')
+    { :lat => (lat || '51.71154'), lon: (lon || '6.0503') }
   end
 end

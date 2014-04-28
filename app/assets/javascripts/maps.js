@@ -9,11 +9,11 @@ var map = {
   fetchCampings: null
 }
 
-map.setup = function () {
-  map.setCenter({ coords: { latitude: '51.71154', longitude: '6.05034' } })
+map.setup = function (lat, lon) {
+  map.setCenter({ coords: { latitude: lat, longitude: lon } })
 
   //!urlParam("test") testing extension to allow for testing.
-  if (Modernizr.geolocation && !urlParam('test')) {
+  if (Modernizr.geolocation && !urlParam('test') &&!urlParam('center')) {
     navigator.geolocation.getCurrentPosition(map.setCenter)
   }
   map.init();

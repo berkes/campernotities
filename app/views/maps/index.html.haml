@@ -3,7 +3,7 @@
 
 - content_for :javascript_body do
   $(document).ready(function() {                        |
-    map.setup();                                        |
+    map.setup('#{@center[:lat]}', '#{@center[:lon]}');  |
   });                                                   |
 
 .row

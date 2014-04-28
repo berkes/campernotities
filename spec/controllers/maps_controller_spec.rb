@@ -23,6 +23,24 @@ describe MapsController do
       end
     end
 
+    describe "center" do
+      context 'uncentered' do
+        it 'should pass default center params to the map generator' do
+          get :index
+          assigns(:center)[:lat].should eq '51.71154'
+          assigns(:center)[:lon].should eq '6.0503'
+        end
+      end
+
+      context 'centered' do
+        it  'should pass the center params to the map generator' do
+          get :index, :center => '13.37,3.14'
+          assigns(:center)[:lat].should eq '13.37'
+          assigns(:center)[:lon].should eq '3.14'
+        end
+      end
+    end
+
     context "JSON" do
       context "no bounds" do
         before do
@@ -33,8 +51,6 @@ describe MapsController do
         it 'should have the pins as JSON' do
           response.body.should eq [].to_json
         end
-
-
       end
 
       context "bounded" do
